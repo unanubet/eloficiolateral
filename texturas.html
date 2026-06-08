@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texturas header</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Kranky&display=swap" rel="stylesheet">
+  <style>
+    body { background: #fdf8f4; padding: 2rem; font-family: sans-serif; }
+    .muestra { margin-bottom: 2rem; border-radius: 8px; overflow: hidden; }
+    .nombre { font-family: 'Kranky', cursive; font-size: 0.85rem; color: #8f4a7a; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .header-demo {
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 2px solid #8f4a7a;
+    }
+    .titulo-demo {
+      font-family: 'Fredericka the Great', cursive;
+      color: #fce8f3;
+      font-size: 1.8rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    .nav-demo {
+      margin-left: auto;
+      display: flex;
+      gap: 1.5rem;
+      font-family: 'Kranky', cursive;
+      color: #d3d5da;
+      font-size: 1rem;
+    }
+
+    /* 1. Rayas diagonales */
+    .t1 {
+      background-color: #2a2a35;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 4px,
+        rgba(255,255,255,0.04) 4px,
+        rgba(255,255,255,0.04) 8px
+      );
+    }
+
+    /* 2. Cuadrícula */
+    .t2 {
+      background-color: #2a2a35;
+      background-image:
+        linear-gradient(rgba(242,174,213,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(242,174,213,0.07) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* 3. Puntos grandes espaciados */
+    .t3 {
+      background-color: #2a2a35;
+      background-image: radial-gradient(rgba(242,174,213,0.25) 1.5px, transparent 1.5px);
+      background-size: 16px 16px;
+    }
+
+    /* 4. Navy limpio */
+    .t4 {
+      background-color: #2a2a35;
+    }
+
+    /* 5. Mini corazones */
+    .t5 {
+      background-color: #2a2a35;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ctext y='14' font-size='10' fill='rgba(242,174,213,0.2)'%3E%E2%99%A5%3C/text%3E%3C/svg%3E");
+      background-size: 20px 20px;
+    }
+
+    /* 6. Corazones 8bit patrón */
+    .t6 {
+      background-color: #2a2a35;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .t6 canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="muestra">
+    <div class="nombre">1 · Rayas diagonales</div>
+    <div class="header-demo t1">
+      <div class="titulo-demo">El Oficio Lateral</div>
+      <div class="nav-demo">
+        <span>Talleres</span>
+        <span>Calendario</span>
+        <span>Biblioteca</span>
+        <span>Contacto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="muestra">
+    <div class="nombre">2 · Cuadrícula</div>
+    <div class="header-demo t2">
+      <div class="titulo-demo">El Oficio Lateral</div>
+      <div class="nav-demo">
+        <span>Talleres</span>
+        <span>Calendario</span>
+        <span>Biblioteca</span>
+        <span>Contacto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="muestra">
+    <div class="nombre">3 · Puntos grandes espaciados</div>
+    <div class="header-demo t3">
+      <div class="titulo-demo">El Oficio Lateral</div>
+      <div class="nav-demo">
+        <span>Talleres</span>
+        <span>Calendario</span>
+        <span>Biblioteca</span>
+        <span>Contacto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="muestra">
+    <div class="nombre">4 · Navy limpio</div>
+    <div class="header-demo t4">
+      <div class="titulo-demo">El Oficio Lateral</div>
+      <div class="nav-demo">
+        <span>Talleres</span>
+        <span>Calendario</span>
+        <span>Biblioteca</span>
+        <span>Contacto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="muestra">
+    <div class="nombre">6 · Corazones 8bit patrón</div>
+    <div class="header-demo t6" id="header6">
+      <canvas id="heartCanvas"></canvas>
+      <div class="titulo-demo" style="position:relative; z-index:1;">El Oficio Lateral</div>
+      <div class="nav-demo" style="position:relative; z-index:1;">
+        <span>Talleres</span>
+        <span>Calendario</span>
+        <span>Biblioteca</span>
+        <span>Contacto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="muestra">
+    <div class="nombre">5 · Mini corazones</div>
+    <div class="header-demo t5">
+      <div class="titulo-demo">El Oficio Lateral</div>
+      <div class="nav-demo">
+        <span>Talleres</span>
+        <span>Calendario</span>
+        <span>Biblioteca</span>
+        <span>Contacto</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const canvas = document.getElementById('heartCanvas');
+  const header = document.getElementById('header6');
+  canvas.width = header.offsetWidth;
+  canvas.height = header.offsetHeight;
+  const ctx = canvas.getContext('2d');
+
+  const p = 4; // tamaño de cada píxel
+  const color = 'rgba(242,174,213,0.3)';
+
+  // forma del corazón en grilla 7x7
+  const heart = [
+    [0,1,1,0,1,1,0],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [0,1,1,1,1,1,0],
+    [0,0,1,1,1,0,0],
+    [0,0,0,1,0,0,0],
+  ];
+
+  const spacingX = 48;
+  const spacingY = 44;
+
+  ctx.fillStyle = color;
+
+  for (let startY = 8; startY < canvas.height + spacingY; startY += spacingY) {
+    for (let startX = 8; startX < canvas.width + spacingX; startX += spacingX) {
+      heart.forEach((row, ry) => {
+        row.forEach((cell, rx) => {
+          if (cell) {
+            ctx.fillRect(startX + rx * p, startY + ry * p, p, p);
+          }
+        });
+      });
+    }
+  }
+</script>
+</body>
+</html>

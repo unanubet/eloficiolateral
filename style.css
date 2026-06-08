@@ -7,8 +7,9 @@
   --navy: #2a2a35;
   --crema: #fdf8f4;
   --texto: #2a2a35;
-  --fuente-titulo: 'Leckerli One', cursive;
-  --fuente-cuerpo: 'Inter', sans-serif;
+  --fuente-titulo: 'Kranky', cursive;
+  --fuente-logo: 'Fredericka the Great', cursive;
+  --fuente-cuerpo: 'Lora', serif;
 }
 
 /* === RESET === */
@@ -21,6 +22,7 @@
 /* === BASE === */
 body {
   font-family: var(--fuente-cuerpo);
+  line-height: 1.85;
   background-color: var(--crema);
   background-image:
     repeating-linear-gradient(
@@ -79,14 +81,16 @@ h3 {
 }
 
 .marquee-barra marquee {
-  letter-spacing: 0.1rem;
+  font-family: 'Kranky', cursive;
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
 }
 
 /* === HEADER === */
 .site-header {
   background-color: var(--navy);
-  background-image: radial-gradient(var(--rosa-oscuro) 1px, transparent 1px);
-  background-size: 20px 20px;
+  position: relative;
+  overflow: hidden;
   padding: 1rem 1.5rem;
   position: sticky;
   top: 0;
@@ -117,9 +121,13 @@ h3 {
 }
 
 .logo-texto {
-  font-family: var(--fuente-titulo);
-  color: var(--rosa);
-  font-size: 1.6rem;
+  font-family: var(--fuente-logo);
+  color: #fce8f3;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 1;
 }
 
 .nav-principal {
@@ -130,8 +138,9 @@ h3 {
 
 .nav-principal a {
   color: var(--gris);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-family: 'Kranky', cursive;
+  font-size: 1rem;
+  font-weight: 400;
   transition: color 0.2s;
 }
 
@@ -159,13 +168,7 @@ h3 {
 }
 
 .hero::before {
-  content: "✦ ✿ ✦ ✿ ✦ ✿ ✦ ✿ ✦";
-  display: block;
-  font-size: 0.85rem;
-  color: var(--rosa-oscuro);
-  letter-spacing: 0.3rem;
-  margin-bottom: 2rem;
-  opacity: 0.6;
+  content: none;
 }
 
 .hero-inner {
@@ -173,18 +176,60 @@ h3 {
   margin: 0 auto;
 }
 
-.cita-mistral {
-  font-family: var(--fuente-titulo);
-  font-size: 1.6rem;
+.cita-titulo {
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 2rem;
   color: var(--navy);
-  line-height: 1.4;
-  margin-bottom: 0.75rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .cita-autor {
-  font-size: 0.9rem;
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 0.95rem;
   color: var(--rosa-oscuro);
-  margin-bottom: 2rem;
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.cita-epigrafe {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--rosa-oscuro);
+  text-align: right;
+  margin: 1.5rem 0;
+  line-height: 1.7;
+}
+
+.cita-cuerpo {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+  text-align: left;
+  line-height: 1.85;
+  border-left: none;
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
+
+.cita-cuerpo p {
+  margin-bottom: 1rem;
+  text-indent: 1.5em;
+}
+
+.cita-cuerpo p::before {
+  content: none;
+}
+
+.cita-cuerpo p:first-child::before {
+  content: none;
+}
+
+.cita-cuerpo p:last-child::after {
+  content: none;
 }
 
 /* === BOTONES === */
@@ -194,8 +239,8 @@ h3 {
   color: var(--rosa);
   padding: 0.75rem 2rem;
   border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-family: 'Kranky', cursive;
+  font-size: 1.05rem;
   transition: background-color 0.2s;
 }
 
@@ -211,8 +256,8 @@ h3 {
   color: var(--rosa-medio);
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-family: 'Kranky', cursive;
+  font-size: 1rem;
   transition: all 0.2s;
 }
 
