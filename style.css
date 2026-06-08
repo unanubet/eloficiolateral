@@ -276,6 +276,27 @@ section:nth-child(even) {
   background-color: white;
 }
 
+/* === INSTAGRAM === */
+.instagram-posts {
+  padding: 2rem 0;
+  background: white;
+}
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* === ORIGEN === */
+.origen p {
+  max-width: 680px;
+  font-size: 1.05rem;
+  color: var(--texto);
+  margin-bottom: 1.2rem;
+}
+
 /* === PRESENTACIÓN === */
 .presentacion-inner {
   display: flex;
