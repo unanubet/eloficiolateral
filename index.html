@@ -129,7 +129,17 @@
     <div class="contenedor">
       <h2>Biblioteca digital</h2>
       <p class="biblioteca-intro">Lecturas, recursos y archivos para descargar.</p>
-      <div class="biblioteca-categorias">
+
+      <div class="biblioteca-acceso" id="biblioteca-acceso">
+        <p class="acceso-texto">Esta sección es exclusiva para la comunidad de El Oficio Lateral.</p>
+        <div class="acceso-form">
+          <input type="password" id="biblioteca-pass" placeholder="contraseña" class="acceso-input">
+          <button onclick="verificarPass()" class="acceso-btn">Entrar</button>
+        </div>
+        <p class="acceso-error" id="acceso-error"></p>
+      </div>
+
+      <div class="biblioteca-categorias" id="biblioteca-contenido" style="display:none;">
         <div class="biblioteca-categoria">
           <h3 class="cat-titulo">📚 Español</h3>
           <ul class="cat-lista">
@@ -312,17 +322,17 @@
         <div class="biblioteca-categoria">
           <h3 class="cat-titulo">🌿 Poesía</h3>
           <ul class="cat-lista">
-            <li><a href="https://drive.google.com/file/d/19UFer5i0JL8AsyAOzJWVwzKLquvNg04h/view" target="_blank">No hay extensión más grande</a></li>
-            <li><a href="https://drive.google.com/file/d/1-pTP7-W76t_sQcdneopIbsrlCAFms0Mm/view" target="_blank">La campana de cristal (Sylvia Plath)</a></li>
-            <li><a href="https://drive.google.com/file/d/1xVoO-SS89-h0_7bU0CszvuisE8UDKjT_/view" target="_blank">Chilco (Daniela Catrileo)</a></li>
-            <li><a href="https://drive.google.com/file/d/1JNOkU-r2UjUfhd-f0n1K2GBFMXH6U5Tl/view" target="_blank">Poemas a la muerte (Emily Dickinson)</a></li>
-            <li><a href="https://drive.google.com/file/d/1todo/view" target="_blank">Todo lo que necesito existe ya en mí</a></li>
-            <li><a href="https://drive.google.com/file/d/1dias/view" target="_blank">Días sin ti (Elvira Sastre)</a></li>
-            <li><a href="https://drive.google.com/file/d/143maneras/view" target="_blank">43 maneras de soltarse el pelo (Elvira Sastre)</a></li>
-            <li><a href="https://drive.google.com/file/d/160poemas/view" target="_blank">60 poemas (Emily Dickinson)</a></li>
-            <li><a href="https://drive.google.com/file/d/1hl9UlzvEwr9wqfFL044xGb-ZYVGYOIIc/view" target="_blank">Toda culpa es un misterio (Gabriela Mistral)</a></li>
-            <li><a href="https://drive.google.com/file/d/1eramos/view" target="_blank">Éramos unos niños (Patti Smith)</a></li>
-            <li><a href="https://drive.google.com/file/d/1devocion/view" target="_blank">Devoción (Patti Smith)</a></li>
+            <li><a href="https://drive.google.com/file/d/1wcQDxK8B7oVZMClvhPXy40KUZs5SX_zD/view" target="_blank">No hay extensión más grande</a></li>
+            <li><a href="https://drive.google.com/file/d/1L0MEtoV2Cw45zQAPEKhn4FWyJbhG2vWb/view" target="_blank">La campana de cristal (Sylvia Plath)</a></li>
+            <li><a href="https://drive.google.com/file/d/1pen8nhJquJp8UxE1rtkqzag-ZUepEvLG/view" target="_blank">Chilco (Daniela Catrileo)</a></li>
+            <li><a href="https://drive.google.com/file/d/1A5ZSHtYQL_doly70W92O7EfArgszy0Rw/view" target="_blank">Poemas a la muerte (Emily Dickinson)</a></li>
+            <li><a href="https://drive.google.com/file/d/1rSoC_IVvau-UyzDY1qVAK1SE30eXzbPQ/view" target="_blank">Todo lo que necesito existe ya en mí</a></li>
+            <li><a href="https://drive.google.com/file/d/1Fw2RnC9K5c4-hO5xBmKSpVF6Zs3SQNz9/view" target="_blank">Días sin ti (Elvira Sastre)</a></li>
+            <li><a href="https://drive.google.com/file/d/1y-vBR_9m6OekKBgvh1ffJi33F5Q32Nzl/view" target="_blank">43 maneras de soltarse el pelo (Elvira Sastre)</a></li>
+            <li><a href="https://drive.google.com/file/d/1gmM3Ga_vYkrLYHnYRsWDIH6BpMUl4axn/view" target="_blank">60 poemas (Emily Dickinson)</a></li>
+            <li><a href="https://drive.google.com/file/d/1W9DyMcBbM9_WKZ5fzHcY4N8oJALmgNDI/view" target="_blank">Toda culpa es un misterio (Gabriela Mistral)</a></li>
+            <li><a href="https://drive.google.com/file/d/1pY0_sD7iTeMbC78e2rcZSniEF1yq8vOB/view" target="_blank">Éramos unos niños (Patti Smith)</a></li>
+            <li><a href="https://drive.google.com/file/d/1b9HKfeq-jX2rr6w3lezyEI8ZhJsXZup0/view" target="_blank">Devoción (Patti Smith)</a></li>
           </ul>
         </div>
         <div class="biblioteca-categoria">
@@ -335,6 +345,29 @@
       </div>
     </div>
   </section>
+
+  <script>
+    // Verificar si ya ingresó la contraseña en esta sesión
+    if (sessionStorage.getItem('biblioteca-ok') === 'si') {
+      document.getElementById('biblioteca-acceso').style.display = 'none';
+      document.getElementById('biblioteca-contenido').style.display = 'grid';
+    }
+
+    function verificarPass() {
+      const input = document.getElementById('biblioteca-pass').value.trim().toLowerCase();
+      if (input === 'dorisdana') {
+        sessionStorage.setItem('biblioteca-ok', 'si');
+        document.getElementById('biblioteca-acceso').style.display = 'none';
+        document.getElementById('biblioteca-contenido').style.display = 'grid';
+      } else {
+        document.getElementById('acceso-error').textContent = 'Contraseña incorrecta.';
+      }
+    }
+
+    document.getElementById('biblioteca-pass').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') verificarPass();
+    });
+  </script>
 
   <!-- RECOMENDACIONES -->
   <section class="recomendaciones" id="recomendaciones">

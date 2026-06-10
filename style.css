@@ -409,6 +409,131 @@ section:nth-child(even) {
   align-self: flex-start;
 }
 
+/* === BIBLIOTECA ACCESO === */
+.biblioteca-acceso {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.acceso-texto {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.acceso-form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.acceso-input {
+  font-family: var(--fuente-cuerpo);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gris);
+  border-radius: 2px;
+  outline: none;
+  width: 220px;
+}
+
+.acceso-input:focus {
+  border-color: var(--rosa-medio);
+}
+
+.acceso-btn {
+  font-family: var(--fuente-cuerpo);
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  background-color: var(--rosa-oscuro);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.acceso-btn:hover {
+  background-color: var(--rosa-medio);
+}
+
+.acceso-error {
+  color: var(--rosa-oscuro);
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+  min-height: 1.2rem;
+}
+
+/* === BIBLIOTECA === */
+.biblioteca {
+  background-color: var(--crema);
+  padding: 4rem 1.5rem;
+}
+
+.biblioteca-intro {
+  color: #666;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.biblioteca-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.biblioteca-categoria {
+  background: white;
+  border: 1px solid var(--gris);
+  border-radius: 4px;
+  padding: 1.5rem;
+}
+
+.cat-titulo {
+  font-family: var(--fuente-titulo);
+  color: var(--rosa-oscuro);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--gris);
+  padding-bottom: 0.5rem;
+}
+
+.cat-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.cat-lista li a {
+  color: var(--rosa-oscuro);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  display: block;
+}
+
+.cat-lista li a:hover {
+  text-decoration: underline;
+  color: var(--rosa-medio);
+}
+
+.cat-lista::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cat-lista::-webkit-scrollbar-track {
+  background: var(--gris);
+}
+
+.cat-lista::-webkit-scrollbar-thumb {
+  background: var(--rosa-medio);
+  border-radius: 2px;
+}
+
 .tarjeta p {
   font-size: 0.95rem;
   color: #555;
