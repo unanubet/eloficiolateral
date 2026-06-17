@@ -4,139 +4,187 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculadora de impacto en el NEM — El Oficio Lateral</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Fredericka+the+Great&family=Kranky&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+  <style>
+    .eol-topbar {
+      background-color: #2a2a35;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .eol-topbar a {
+      color: #f2aed5;
+      font-family: 'Kranky', cursive;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .eol-topbar a:hover { text-decoration: underline; }
+    .eol-topbar-logo {
+      color: #fce8f3;
+      font-family: 'Fredericka the Great', cursive;
+      font-size: 1.3rem;
+      margin-left: 0.5rem;
+    }
+    .eol-bottombar {
+      background-color: #2a2a35;
+      color: #d3d5da;
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.82rem;
+      margin-top: 2rem;
+      font-family: 'Lora', serif;
+    }
+    .eol-bottombar a { color: #f2aed5; text-decoration: none; }
+    .eol-bottombar a:hover { text-decoration: underline; }
+  </style>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --eol-magenta: #D94F8A;
-      --eol-magenta-light: #F7D6E8;
-      --eol-magenta-dark: #A33568;
-      --eol-gray: #5A5A5A;
-      --eol-gray-light: #F0EEEB;
-      --text-primary: #1a1a1a;
-      --text-secondary: #555;
-      --text-tertiary: #999;
-      --bg-primary: #fff;
-      --bg-page: #faf9f7;
-      --border: #e0ddd8;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --text-primary: #f0f0f0;
-        --text-secondary: #aaa;
-        --text-tertiary: #666;
-        --bg-primary: #1e1e1e;
-        --bg-page: #141414;
-        --border: #333;
-        --eol-gray-light: #2a2a2a;
-      }
+      --rosa: #f2aed5;
+      --gris: #d3d5da;
+      --rosa-medio: #c075a8;
+      --rosa-oscuro: #8f4a7a;
+      --navy: #2a2a35;
+      --crema: #fdf8f4;
+      --texto: #2a2a35;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-primary);
+      font-family: 'Lora', serif;
+      background-color: var(--crema);
+      background-image: repeating-linear-gradient(transparent, transparent 27px, #e8d5e0 28px);
+      background-size: 100% 28px;
+      color: var(--texto);
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
       padding: 2rem 1rem 4rem;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%238f4a7a'/%3E%3C/svg%3E") 10 10, auto;
     }
 
-    .calc-wrap { width: 100%; max-width: 620px; }
+    .calc-wrap { width: 100%; max-width: 640px; margin: 0 auto; }
 
     .eol-header { margin-bottom: 2rem; }
     .eol-tag {
       display: inline-block;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      background: var(--eol-magenta-light); color: var(--eol-magenta-dark);
-      padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+      font-family: 'Kranky', cursive;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #fce8f3;
+      color: var(--rosa-oscuro);
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
     }
-    .eol-header h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; line-height: 1.3; }
-    .eol-header p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .eol-header h1 {
+      font-family: 'Kranky', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--rosa-oscuro);
+      margin-bottom: 0.4rem;
+      border-bottom: 3px dotted var(--rosa-medio);
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+    .eol-header p { font-size: 0.95rem; color: #555; line-height: 1.7; margin-top: 0.75rem; }
 
     .card {
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.1rem 1.25rem;
-      margin-bottom: 1rem;
+      background: white;
+      border: 2px dashed var(--rosa-medio);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 4px 4px 0 var(--rosa);
     }
 
     .section-label {
-      font-size: 11px; font-weight: 600;
-      color: var(--eol-magenta);
-      text-transform: uppercase; letter-spacing: 0.08em;
-      margin: 0 0 4px;
+      font-family: 'Kranky', cursive;
+      font-size: 0.8rem;
+      color: var(--rosa-oscuro);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
     }
-    .section-desc { font-size: 13px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.5; }
+    .section-desc { font-size: 0.88rem; color: #555; margin-bottom: 1rem; line-height: 1.6; }
 
     input[type="number"], input[type="text"] {
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-md);
-      color: var(--text-primary);
-      font-size: 14px;
-      padding: 6px 10px;
+      font-family: 'Lora', serif;
+      background: white;
+      border: 1px solid var(--gris);
+      color: var(--texto);
+      font-size: 0.88rem;
+      padding: 5px 10px;
       height: 34px;
       outline: none;
+      border-radius: 2px;
       transition: border-color 0.15s;
     }
     input[type="number"]:focus, input[type="text"]:focus {
-      border-color: var(--eol-magenta);
-      box-shadow: 0 0 0 2px var(--eol-magenta-light);
+      border-color: var(--rosa-medio);
+      box-shadow: 0 0 0 2px #fce8f3;
     }
-    input[type="range"] { accent-color: var(--eol-magenta); cursor: pointer; }
+    input[type="range"] { accent-color: var(--rosa-oscuro); cursor: pointer; }
 
-    .hint { font-size: 12px; color: var(--text-tertiary); margin: 8px 0 0; line-height: 1.5; }
+    .hint { font-size: 0.8rem; color: #888; margin-top: 0.6rem; line-height: 1.5; font-style: italic; }
 
     .btn-remove {
       background: none; border: none; cursor: pointer;
-      color: var(--text-tertiary); padding: 0; margin-left: auto;
+      color: var(--gris); padding: 0; margin-left: auto;
       display: flex; align-items: center; gap: 4px;
       font-size: 13px; transition: color 0.15s; flex-shrink: 0;
     }
-    .btn-remove:hover { color: var(--eol-magenta); }
+    .btn-remove:hover { color: var(--rosa-oscuro); }
 
     .btn-add {
+      font-family: 'Kranky', cursive;
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; cursor: pointer; padding: 6px 14px;
-      border: 0.5px solid var(--eol-magenta);
-      color: var(--eol-magenta); background: transparent;
-      border-radius: var(--radius-md); transition: background 0.15s;
+      font-size: 0.9rem; cursor: pointer;
+      padding: 0.4rem 1.1rem;
+      border: 2px solid var(--rosa-medio);
+      color: var(--rosa-medio);
+      background: transparent;
+      border-radius: 999px;
+      transition: all 0.15s;
     }
-    .btn-add:hover { background: var(--eol-magenta-light); }
+    .btn-add:hover { background: var(--rosa-medio); color: white; }
 
     .btn-aplicar {
+      font-family: 'Kranky', cursive;
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; cursor: pointer; padding: 6px 14px;
-      border: 0.5px solid var(--eol-magenta);
-      background: var(--eol-magenta); color: #fff;
-      border-radius: var(--radius-md); transition: opacity 0.15s;
+      font-size: 0.9rem; cursor: pointer;
+      padding: 0.4rem 1.1rem;
+      border: 2px solid var(--rosa-oscuro);
+      background: var(--rosa-oscuro); color: white;
+      border-radius: 999px;
+      transition: opacity 0.15s;
     }
-    .btn-aplicar:hover { opacity: 0.88; }
-    .btn-aplicar.aplicado { background: #0F6E56; border-color: #0F6E56; }
+    .btn-aplicar:hover { opacity: 0.85; }
+    .btn-aplicar.aplicado { background: #2a7a5e; border-color: #2a7a5e; }
 
-    .year-tabs {
-      display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;
-    }
+    .year-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
     .year-tab {
-      font-size: 13px; padding: 5px 14px;
-      border: 0.5px solid var(--border);
-      border-radius: 20px; background: transparent;
-      color: var(--text-secondary); cursor: pointer;
+      font-family: 'Kranky', cursive;
+      font-size: 0.9rem;
+      padding: 0.3rem 1rem;
+      border: 2px solid var(--gris);
+      border-radius: 999px;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
       transition: all 0.15s;
     }
     .year-tab.active {
-      background: var(--eol-magenta);
-      border-color: var(--eol-magenta);
-      color: #fff;
+      background: var(--rosa-oscuro);
+      border-color: var(--rosa-oscuro);
+      color: white;
     }
-    .year-tab:not(.active):hover { border-color: var(--eol-magenta); color: var(--eol-magenta); }
+    .year-tab:not(.active):hover { border-color: var(--rosa-medio); color: var(--rosa-medio); }
 
     .year-panel { display: none; }
     .year-panel.active { display: block; }
@@ -147,79 +195,90 @@
       gap: 8px; align-items: center;
       margin-bottom: 8px;
     }
-    .asig-row input[type="text"] { width: 100%; font-size: 13px; }
-    .asig-row input[type="number"] { width: 100%; text-align: center; font-size: 13px; }
+    .asig-row input[type="text"] { width: 100%; }
+    .asig-row input[type="number"] { width: 100%; text-align: center; }
     .asig-header {
       display: grid;
       grid-template-columns: 1fr 72px 72px auto;
-      gap: 8px;
-      margin-bottom: 6px;
+      gap: 8px; margin-bottom: 6px;
     }
     .asig-header span {
-      font-size: 11px; color: var(--text-tertiary);
-      text-align: center; font-weight: 500;
+      font-family: 'Kranky', cursive;
+      font-size: 0.75rem; color: #aaa;
+      text-align: center;
     }
     .asig-header span:first-child { text-align: left; }
 
     .resumen-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px; margin-top: 14px;
+      gap: 8px; margin-top: 1rem;
     }
     .resumen-item {
-      background: var(--eol-gray-light);
-      border-radius: var(--radius-md);
-      padding: 10px 12px;
+      background: #fce8f3;
+      padding: 0.75rem 1rem;
     }
-    .resumen-item.magenta { background: var(--eol-magenta); }
-    .resumen-label { font-size: 11px; color: var(--text-secondary); margin: 0 0 2px; }
-    .resumen-item.magenta .resumen-label { color: #F7D6E8; }
-    .resumen-value { font-size: 20px; font-weight: 500; color: var(--text-primary); margin: 0; }
-    .resumen-item.magenta .resumen-value { color: #fff; }
+    .resumen-item.magenta { background: var(--rosa-oscuro); }
+    .resumen-label {
+      font-family: 'Kranky', cursive;
+      font-size: 0.7rem; color: #888;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+    .resumen-item.magenta .resumen-label { color: #fce8f3; }
+    .resumen-value { font-size: 1.4rem; font-weight: 600; color: var(--texto); }
+    .resumen-item.magenta .resumen-value { color: white; }
 
     .apply-row {
       display: flex; align-items: center; justify-content: flex-end;
-      gap: 8px; margin-top: 14px;
+      gap: 8px; margin-top: 1rem;
     }
-    .apply-note { font-size: 12px; color: var(--text-tertiary); flex: 1; }
+    .apply-note { font-size: 0.8rem; color: #888; flex: 1; font-style: italic; }
 
-    .field-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .field-row { display: flex; align-items: center; gap: 12px; margin-bottom: 0.85rem; flex-wrap: wrap; }
     .field-row:last-of-type { margin-bottom: 0; }
-    .field-row label { font-size: 14px; color: var(--text-secondary); min-width: 180px; }
+    .field-row label { font-size: 0.9rem; color: #555; min-width: 180px; }
     .field-row input[type="number"] { width: 90px; }
 
     .metrics {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px; margin-bottom: 1rem;
+      gap: 10px; margin-bottom: 1.5rem;
     }
-    .metric { background: var(--eol-gray-light); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
-    .metric.destacado { background: var(--eol-magenta); }
-    .metric-label { font-size: 12px; color: var(--text-secondary); margin: 0 0 4px; }
-    .metric.destacado .metric-label { color: #F7D6E8; }
-    .metric-value { font-size: 22px; font-weight: 500; color: var(--text-primary); margin: 0; }
-    .metric.destacado .metric-value { color: #fff; }
-    .metric-value.up { color: #0F6E56; }
-    .metric-value.down { color: var(--eol-magenta-dark); }
+    .metric {
+      background: #fce8f3;
+      padding: 0.9rem 1rem;
+      box-shadow: 3px 3px 0 var(--rosa);
+    }
+    .metric.destacado { background: var(--rosa-oscuro); box-shadow: 3px 3px 0 var(--navy); }
+    .metric-label {
+      font-family: 'Kranky', cursive;
+      font-size: 0.72rem; color: #888;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .metric.destacado .metric-label { color: #fce8f3; }
+    .metric-value { font-size: 1.5rem; font-weight: 600; color: var(--texto); }
+    .metric.destacado .metric-value { color: white; }
+    .metric-value.up { color: #2a7a5e; }
+    .metric-value.down { color: var(--rosa-oscuro); }
 
     .nota-card {
-      background: var(--bg-primary); border: 0.5px solid var(--border);
-      border-radius: var(--radius-md); padding: 0.8rem 1rem; margin-bottom: 10px;
+      background: white;
+      border: 1px dashed var(--gris);
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.75rem;
     }
     .nota-asig { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .nota-asig label { font-size: 13px; color: var(--text-secondary); }
-    .nota-asig input[type="text"] { flex: 1; font-size: 13px; }
+    .nota-asig label { font-size: 0.85rem; color: #555; }
+    .nota-asig input[type="text"] { flex: 1; }
     .nota-row { display: flex; align-items: center; gap: 10px; }
-    .nota-row label { font-size: 14px; color: var(--text-secondary); min-width: 48px; }
-    .nota-row input[type="range"] { flex: 1; }
-    .nota-row input[type="number"] { width: 68px; font-size: 15px; font-weight: 500; }
-
-    .footer-tag {
-      font-size: 12px; color: var(--text-tertiary);
-      margin-top: 2rem; text-align: right; letter-spacing: 0.03em;
+    .nota-row label {
+      font-family: 'Kranky', cursive;
+      font-size: 0.9rem; color: var(--rosa-oscuro); min-width: 48px;
     }
-    .footer-tag a { color: var(--eol-magenta); text-decoration: none; }
-    .footer-tag a:hover { text-decoration: underline; }
+    .nota-row input[type="range"] { flex: 1; }
+    .nota-row input[type="number"] { width: 68px; font-size: 1rem; font-weight: 600; }
 
     @media (max-width: 480px) {
       .asig-row, .asig-header { grid-template-columns: 1fr 60px 60px auto; gap: 6px; }
@@ -228,6 +287,10 @@
   </style>
 </head>
 <body>
+  <nav class="eol-topbar">
+    <a href="index.html">← volver al sitio</a>
+    <span class="eol-topbar-logo">El Oficio Lateral</span>
+  </nav>
   <main class="calc-wrap" aria-label="Calculadora de impacto en el NEM">
 
     <header class="eol-header">
@@ -317,9 +380,10 @@
       </button>
     </div>
 
-    <p class="footer-tag"><a href="https://eloficiolateral.cl" target="_blank" rel="noopener">eloficiolateral.cl</a></p>
-
   </main>
+  <footer class="eol-bottombar">
+    <a href="index.html">El Oficio Lateral</a> &copy; 2025 · «Procura ser dichosa»
+  </footer>
 
   <script>
     const ANIOS = [1, 2, 3, 4];
