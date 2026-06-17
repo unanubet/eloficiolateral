@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de impacto en el NEM — El Oficio Lateral</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --eol-magenta: #D94F8A;
+      --eol-magenta-light: #F7D6E8;
+      --eol-magenta-dark: #A33568;
+      --eol-gray: #5A5A5A;
+      --eol-gray-light: #F0EEEB;
+      --text-primary: #1a1a1a;
+      --text-secondary: #555;
+      --text-tertiary: #999;
+      --bg-primary: #fff;
+      --bg-page: #faf9f7;
+      --border: #e0ddd8;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-primary: #f0f0f0;
+        --text-secondary: #aaa;
+        --text-tertiary: #666;
+        --bg-primary: #1e1e1e;
+        --bg-page: #141414;
+        --border: #333;
+        --eol-gray-light: #2a2a2a;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .calc-wrap { width: 100%; max-width: 620px; }
+
+    .eol-header { margin-bottom: 2rem; }
+    .eol-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--eol-magenta-light); color: var(--eol-magenta-dark);
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+    }
+    .eol-header h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; line-height: 1.3; }
+    .eol-header p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    .card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--eol-magenta);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin: 0 0 4px;
+    }
+    .section-desc { font-size: 13px; color: var(--text-secondary); margin: 0 0 14px; line-height: 1.5; }
+
+    input[type="number"], input[type="text"] {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 14px;
+      padding: 6px 10px;
+      height: 34px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type="number"]:focus, input[type="text"]:focus {
+      border-color: var(--eol-magenta);
+      box-shadow: 0 0 0 2px var(--eol-magenta-light);
+    }
+    input[type="range"] { accent-color: var(--eol-magenta); cursor: pointer; }
+
+    .hint { font-size: 12px; color: var(--text-tertiary); margin: 8px 0 0; line-height: 1.5; }
+
+    .btn-remove {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-tertiary); padding: 0; margin-left: auto;
+      display: flex; align-items: center; gap: 4px;
+      font-size: 13px; transition: color 0.15s; flex-shrink: 0;
+    }
+    .btn-remove:hover { color: var(--eol-magenta); }
+
+    .btn-add {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; cursor: pointer; padding: 6px 14px;
+      border: 0.5px solid var(--eol-magenta);
+      color: var(--eol-magenta); background: transparent;
+      border-radius: var(--radius-md); transition: background 0.15s;
+    }
+    .btn-add:hover { background: var(--eol-magenta-light); }
+
+    .btn-aplicar {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; cursor: pointer; padding: 6px 14px;
+      border: 0.5px solid var(--eol-magenta);
+      background: var(--eol-magenta); color: #fff;
+      border-radius: var(--radius-md); transition: opacity 0.15s;
+    }
+    .btn-aplicar:hover { opacity: 0.88; }
+    .btn-aplicar.aplicado { background: #0F6E56; border-color: #0F6E56; }
+
+    .year-tabs {
+      display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .year-tab {
+      font-size: 13px; padding: 5px 14px;
+      border: 0.5px solid var(--border);
+      border-radius: 20px; background: transparent;
+      color: var(--text-secondary); cursor: pointer;
+      transition: all 0.15s;
+    }
+    .year-tab.active {
+      background: var(--eol-magenta);
+      border-color: var(--eol-magenta);
+      color: #fff;
+    }
+    .year-tab:not(.active):hover { border-color: var(--eol-magenta); color: var(--eol-magenta); }
+
+    .year-panel { display: none; }
+    .year-panel.active { display: block; }
+
+    .asig-row {
+      display: grid;
+      grid-template-columns: 1fr 72px 72px auto;
+      gap: 8px; align-items: center;
+      margin-bottom: 8px;
+    }
+    .asig-row input[type="text"] { width: 100%; font-size: 13px; }
+    .asig-row input[type="number"] { width: 100%; text-align: center; font-size: 13px; }
+    .asig-header {
+      display: grid;
+      grid-template-columns: 1fr 72px 72px auto;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .asig-header span {
+      font-size: 11px; color: var(--text-tertiary);
+      text-align: center; font-weight: 500;
+    }
+    .asig-header span:first-child { text-align: left; }
+
+    .resumen-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px; margin-top: 14px;
+    }
+    .resumen-item {
+      background: var(--eol-gray-light);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+    }
+    .resumen-item.magenta { background: var(--eol-magenta); }
+    .resumen-label { font-size: 11px; color: var(--text-secondary); margin: 0 0 2px; }
+    .resumen-item.magenta .resumen-label { color: #F7D6E8; }
+    .resumen-value { font-size: 20px; font-weight: 500; color: var(--text-primary); margin: 0; }
+    .resumen-item.magenta .resumen-value { color: #fff; }
+
+    .apply-row {
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 8px; margin-top: 14px;
+    }
+    .apply-note { font-size: 12px; color: var(--text-tertiary); flex: 1; }
+
+    .field-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .field-row:last-of-type { margin-bottom: 0; }
+    .field-row label { font-size: 14px; color: var(--text-secondary); min-width: 180px; }
+    .field-row input[type="number"] { width: 90px; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px; margin-bottom: 1rem;
+    }
+    .metric { background: var(--eol-gray-light); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
+    .metric.destacado { background: var(--eol-magenta); }
+    .metric-label { font-size: 12px; color: var(--text-secondary); margin: 0 0 4px; }
+    .metric.destacado .metric-label { color: #F7D6E8; }
+    .metric-value { font-size: 22px; font-weight: 500; color: var(--text-primary); margin: 0; }
+    .metric.destacado .metric-value { color: #fff; }
+    .metric-value.up { color: #0F6E56; }
+    .metric-value.down { color: var(--eol-magenta-dark); }
+
+    .nota-card {
+      background: var(--bg-primary); border: 0.5px solid var(--border);
+      border-radius: var(--radius-md); padding: 0.8rem 1rem; margin-bottom: 10px;
+    }
+    .nota-asig { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .nota-asig label { font-size: 13px; color: var(--text-secondary); }
+    .nota-asig input[type="text"] { flex: 1; font-size: 13px; }
+    .nota-row { display: flex; align-items: center; gap: 10px; }
+    .nota-row label { font-size: 14px; color: var(--text-secondary); min-width: 48px; }
+    .nota-row input[type="range"] { flex: 1; }
+    .nota-row input[type="number"] { width: 68px; font-size: 15px; font-weight: 500; }
+
+    .footer-tag {
+      font-size: 12px; color: var(--text-tertiary);
+      margin-top: 2rem; text-align: right; letter-spacing: 0.03em;
+    }
+    .footer-tag a { color: var(--eol-magenta); text-decoration: none; }
+    .footer-tag a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .asig-row, .asig-header { grid-template-columns: 1fr 60px 60px auto; gap: 6px; }
+      .resumen-strip { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="calc-wrap" aria-label="Calculadora de impacto en el NEM">
+
+    <header class="eol-header">
+      <span class="eol-tag">El Oficio Lateral</span>
+      <h1>Calculadora de impacto en el NEM</h1>
+      <p>Registra tus notas por año y asignatura, calcula tu NEM actual y proyecta el impacto de las notas que vienen.</p>
+    </header>
+
+    <div class="card">
+      <p class="section-label">Paso 1 — Mis notas por año</p>
+      <p class="section-desc">Ingresa cada asignatura con la cantidad de notas y el promedio obtenido. El NEM y el total se calculan solos.</p>
+
+      <div class="year-tabs">
+        <button class="year-tab active" onclick="cambiarAnio(1)">1° Medio</button>
+        <button class="year-tab" onclick="cambiarAnio(2)">2° Medio</button>
+        <button class="year-tab" onclick="cambiarAnio(3)">3° Medio</button>
+        <button class="year-tab" onclick="cambiarAnio(4)">4° Medio</button>
+      </div>
+
+      <div id="panel-1" class="year-panel active"></div>
+      <div id="panel-2" class="year-panel"></div>
+      <div id="panel-3" class="year-panel"></div>
+      <div id="panel-4" class="year-panel"></div>
+
+      <div class="resumen-strip">
+        <div class="resumen-item">
+          <p class="resumen-label">Total notas acumuladas</p>
+          <p class="resumen-value" id="res-total-notas">0</p>
+        </div>
+        <div class="resumen-item magenta">
+          <p class="resumen-label">NEM calculado</p>
+          <p class="resumen-value" id="res-nem">—</p>
+        </div>
+        <div class="resumen-item">
+          <p class="resumen-label">Asignaturas ingresadas</p>
+          <p class="resumen-value" id="res-asig">0</p>
+        </div>
+      </div>
+
+      <div class="apply-row">
+        <span class="apply-note">Aplica los valores calculados al paso 2</span>
+        <button class="btn-aplicar" id="btn-aplicar" onclick="aplicarResumen()">
+          <i class="ti ti-arrow-down" aria-hidden="true"></i> Aplicar al calculador
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label">Paso 2 — Situación actual</p>
+      <p class="section-desc">Puedes completar esto manualmente o aplicar los valores desde el paso 1.</p>
+      <div class="field-row">
+        <label for="nem-actual">NEM actual</label>
+        <input type="number" id="nem-actual" min="1" max="7" step="0.01" value="" placeholder="ej: 5.80" />
+      </div>
+      <div class="field-row">
+        <label for="total-notas">Total de notas acumuladas</label>
+        <input type="number" id="total-notas" min="1" max="2000" step="1" value="" placeholder="ej: 240" />
+      </div>
+      <p class="hint">Mientras más notas acumuladas, menor es el impacto de cada nota nueva sobre el NEM.</p>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <p class="metric-label">NEM actual</p>
+        <p class="metric-value" id="m-actual">—</p>
+      </div>
+      <div class="metric destacado">
+        <p class="metric-label">NEM proyectado</p>
+        <p class="metric-value" id="m-proyectado">—</p>
+      </div>
+      <div class="metric">
+        <p class="metric-label">Variación</p>
+        <p class="metric-value" id="m-variacion">—</p>
+      </div>
+      <div class="metric">
+        <p class="metric-label">Promedio notas nuevas</p>
+        <p class="metric-value" id="m-nuevas">—</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label">Paso 3 — Notas nuevas</p>
+      <p class="section-desc">Agrega entre 1 y 5 notas futuras para ver cómo afectan tu NEM.</p>
+      <div id="notas-container"></div>
+      <button class="btn-add" id="btn-add" onclick="agregarNota()">
+        <i class="ti ti-plus" aria-hidden="true"></i> Agregar nota
+      </button>
+    </div>
+
+    <p class="footer-tag"><a href="https://eloficiolateral.cl" target="_blank" rel="noopener">eloficiolateral.cl</a></p>
+
+  </main>
+
+  <script>
+    const ANIOS = [1, 2, 3, 4];
+    let anioActivo = 1;
+
+    const datosAnios = {
+      1: [], 2: [], 3: [], 4: []
+    };
+    let contAsig = 0;
+
+    const ASIG_DEFAULT = [
+      'Lenguaje y Comunicación', 'Matemática', 'Historia', 'Ciencias', 'Inglés',
+      'Ed. Física', 'Artes', 'Música', 'Tecnología', 'Religión / Filosofía'
+    ];
+    const NOTAS_DEFAULT = 20;
+
+    function cambiarAnio(n) {
+      anioActivo = n;
+      document.querySelectorAll('.year-tab').forEach((t, i) => {
+        t.classList.toggle('active', i + 1 === n);
+      });
+      document.querySelectorAll('.year-panel').forEach((p, i) => {
+        p.classList.toggle('active', i + 1 === n);
+      });
+    }
+
+    function agregarAsignatura(anio) {
+      contAsig++;
+      datosAnios[anio].push({ id: contAsig, nombre: '', cantidad: NOTAS_DEFAULT, promedio: null });
+      renderPanel(anio);
+      actualizarResumen();
+    }
+
+    function eliminarAsignatura(anio, id) {
+      datosAnios[anio] = datosAnios[anio].filter(a => a.id !== id);
+      renderPanel(anio);
+      actualizarResumen();
+    }
+
+    function renderPanel(anio) {
+      const panel = document.getElementById('panel-' + anio);
+      const lista = datosAnios[anio];
+
+      let html = '';
+      if (lista.length > 0) {
+        html += `<div class="asig-header">
+          <span>Asignatura</span>
+          <span>N° notas</span>
+          <span>Promedio</span>
+          <span></span>
+        </div>`;
+        lista.forEach((a, i) => {
+          html += `<div class="asig-row">
+            <input type="text" placeholder="Asignatura" value="${a.nombre}"
+              oninput="datosAnios[${anio}][${i}].nombre = this.value; actualizarResumen()" />
+            <input type="number" min="0" max="200" step="1" value="${a.cantidad}"
+              oninput="datosAnios[${anio}][${i}].cantidad = parseInt(this.value)||0; actualizarResumen()" />
+            <input type="number" min="1.0" max="7.0" step="0.1"
+              placeholder="—"
+              value="${a.promedio !== null ? a.promedio : ''}"
+              oninput="datosAnios[${anio}][${i}].promedio = this.value !== '' ? parseFloat(this.value) : null; actualizarResumen()" />
+            <button class="btn-remove" onclick="eliminarAsignatura(${anio}, ${a.id})" aria-label="Eliminar">
+              <i class="ti ti-x" aria-hidden="true"></i>
+            </button>
+          </div>`;
+        });
+      } else {
+        html = `<p style="font-size:13px; color:var(--text-tertiary); margin-bottom:12px;">Sin asignaturas en ${anio}° Medio.</p>`;
+      }
+
+      html += `<button class="btn-add" onclick="agregarAsignatura(${anio})" style="margin-top:4px;">
+        <i class="ti ti-plus" aria-hidden="true"></i> Agregar asignatura
+      </button>`;
+
+      panel.innerHTML = html;
+    }
+
+    function actualizarResumen() {
+      let totalNotas = 0;
+      let sumaPromedios = 0;
+      let countConPromedio = 0;
+      let countAsig = 0;
+
+      ANIOS.forEach(a => {
+        datosAnios[a].forEach(asig => {
+          totalNotas += asig.cantidad || 0;
+          countAsig++;
+          if (asig.promedio !== null && !isNaN(asig.promedio)) {
+            sumaPromedios += asig.promedio * (asig.cantidad || 1);
+            countConPromedio += asig.cantidad || 1;
+          }
+        });
+      });
+
+      const nem = countConPromedio > 0 ? sumaPromedios / countConPromedio : null;
+
+      document.getElementById('res-total-notas').textContent = totalNotas;
+      document.getElementById('res-nem').textContent = nem !== null ? nem.toFixed(2) : '—';
+      document.getElementById('res-asig').textContent = countAsig;
+
+      document.getElementById('btn-aplicar').classList.remove('aplicado');
+      document.getElementById('btn-aplicar').innerHTML = '<i class="ti ti-arrow-down" aria-hidden="true"></i> Aplicar al calculador';
+    }
+
+    function aplicarResumen() {
+      const totalNotas = parseInt(document.getElementById('res-total-notas').textContent) || 0;
+      const nemText = document.getElementById('res-nem').textContent;
+      const nem = nemText !== '—' ? parseFloat(nemText) : null;
+
+      document.getElementById('total-notas').value = totalNotas;
+      if (nem !== null) document.getElementById('nem-actual').value = nem.toFixed(2);
+
+      calcular();
+
+      const btn = document.getElementById('btn-aplicar');
+      btn.classList.add('aplicado');
+      btn.innerHTML = '<i class="ti ti-check" aria-hidden="true"></i> Aplicado';
+    }
+
+    ANIOS.forEach(a => renderPanel(a));
+
+    let notas = [];
+    let contadorNotas = 0;
+
+    function agregarNota() {
+      if (notas.length >= 5) return;
+      contadorNotas++;
+      const id = contadorNotas;
+      notas.push({ id, asignatura: '', valor: 5.0 });
+      renderNotas();
+      calcular();
+      if (notas.length >= 5) document.getElementById('btn-add').style.display = 'none';
+    }
+
+    function eliminarNota(id) {
+      notas = notas.filter(n => n.id !== id);
+      renderNotas();
+      calcular();
+      document.getElementById('btn-add').style.display = 'inline-flex';
+    }
+
+    function renderNotas() {
+      const cont = document.getElementById('notas-container');
+      cont.innerHTML = '';
+      notas.forEach((n, i) => {
+        const div = document.createElement('div');
+        div.className = 'nota-card';
+        div.innerHTML = `
+          <div class="nota-asig">
+            <label for="asig-${n.id}">Asignatura</label>
+            <input type="text" id="asig-${n.id}" placeholder="ej: Matemática" value="${n.asignatura}"
+              oninput="notas[${i}].asignatura = this.value" />
+            <button class="btn-remove" onclick="eliminarNota(${n.id})" aria-label="Eliminar nota">
+              <i class="ti ti-x" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="nota-row">
+            <label for="slider-${n.id}">Nota</label>
+            <input type="range" id="slider-${n.id}" min="1" max="7" step="0.1" value="${n.valor}"
+              oninput="actualizarNota(${i}, parseFloat(this.value)); document.getElementById('num-${n.id}').value = parseFloat(this.value).toFixed(1)" />
+            <input type="number" id="num-${n.id}" min="1" max="7" step="0.1" value="${n.valor.toFixed(1)}"
+              oninput="let v=Math.min(7,Math.max(1,parseFloat(this.value)||1)); actualizarNota(${i},v); document.getElementById('slider-${n.id}').value=v" />
+          </div>
+        `;
+        cont.appendChild(div);
+      });
+    }
+
+    function actualizarNota(i, val) {
+      notas[i].valor = val;
+      calcular();
+    }
+
+    function calcular() {
+      const nemActual = parseFloat(document.getElementById('nem-actual').value);
+      const totalNotas = parseInt(document.getElementById('total-notas').value);
+
+      if (isNaN(nemActual) || isNaN(totalNotas) || totalNotas < 1) {
+        document.getElementById('m-actual').textContent = '—';
+        document.getElementById('m-proyectado').textContent = '—';
+        document.getElementById('m-variacion').textContent = '—';
+        document.getElementById('m-variacion').className = 'metric-value';
+        document.getElementById('m-nuevas').textContent = '—';
+        return;
+      }
+
+      document.getElementById('m-actual').textContent = nemActual.toFixed(2);
+
+      if (notas.length === 0) {
+        document.getElementById('m-proyectado').textContent = nemActual.toFixed(2);
+        document.getElementById('m-variacion').textContent = '+0.00';
+        document.getElementById('m-variacion').className = 'metric-value';
+        document.getElementById('m-nuevas').textContent = '—';
+        return;
+      }
+
+      const sumaActual = nemActual * totalNotas;
+      const sumaNuevas = notas.reduce((acc, n) => acc + n.valor, 0);
+      const totalNuevo = totalNotas + notas.length;
+      const nemProyectado = (sumaActual + sumaNuevas) / totalNuevo;
+      const variacion = nemProyectado - nemActual;
+      const promedioNuevas = sumaNuevas / notas.length;
+
+      document.getElementById('m-proyectado').textContent = nemProyectado.toFixed(2);
+
+      const mv = document.getElementById('m-variacion');
+      mv.textContent = (variacion >= 0 ? '+' : '') + variacion.toFixed(2);
+      mv.className = 'metric-value ' + (variacion > 0.001 ? 'up' : variacion < -0.001 ? 'down' : '');
+
+      document.getElementById('m-nuevas').textContent = promedioNuevas.toFixed(1);
+    }
+
+    document.getElementById('nem-actual').addEventListener('input', calcular);
+    document.getElementById('total-notas').addEventListener('input', calcular);
+
+    agregarNota();
+  </script>
+</body>
+</html>
