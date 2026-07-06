@@ -602,6 +602,44 @@ section:nth-child(even) {
   font-size: 0.85rem;
 }
 
+.visit-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.visit-counter__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gris);
+}
+
+.visit-counter__digits {
+  display: flex;
+  gap: 2px;
+  background-color: #000;
+  padding: 4px;
+  border: 1px solid var(--rosa-oscuro);
+  border-radius: 3px;
+}
+
+.visit-counter__digits span {
+  display: inline-block;
+  min-width: 0.9em;
+  padding: 0.15rem 0.3rem;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--rosa);
+  background-color: #111;
+  border-radius: 2px;
+  text-align: center;
+}
+
 /* === MOBILE === */
 @media (max-width: 600px) {
   .cita-mistral {

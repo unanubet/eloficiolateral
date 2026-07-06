@@ -427,6 +427,12 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <p>El Oficio Lateral &copy; 2025 · «Procura ser dichosa»</p>
+    <div class="visit-counter" aria-label="Contador de visitas">
+      <span class="visit-counter__label">Eres la visita nº</span>
+      <span class="visit-counter__digits" id="visit-count">
+        <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+      </span>
+    </div>
   </footer>
 
 <script>
@@ -460,5 +466,19 @@
   }
 </script>
   <script src="scrapbook.js"></script>
+
+  <!-- Contador de visitas (GoatCounter) -->
+  <script data-goatcounter="https://unanubet.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <script>
+    fetch('https://unanubet.goatcounter.com/counter/TOTAL.json')
+      .then(res => res.json())
+      .then(data => {
+        const total = String(parseInt(data.count.replace(/\D/g, ''), 10)).padStart(5, '0');
+        const digits = document.querySelectorAll('#visit-count span');
+        digits.forEach((span, i) => { span.textContent = total[i]; });
+      })
+      .catch(() => {});
+  </script>
 </body>
 </html>
