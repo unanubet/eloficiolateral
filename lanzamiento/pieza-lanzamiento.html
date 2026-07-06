@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  PIEZA DE LANZAMIENTO · El Oficio Lateral
+  ============================================================
+  Cómo capturarla como imagen para Instagram:
+  1. Abre este archivo en el navegador (doble clic).
+  2. Si la tarjeta cuadrada no cabe entera en pantalla, achica
+     con Ctrl y la tecla "-" hasta verla completa.
+  3. Usa el recorte de Windows: tecla Windows + Shift + S,
+     y encierra SOLO el cuadrado rosa/crema.
+  4. Guárdala y súbela a Instagram (el post es cuadrado 1:1).
+  Nota: Instagram reescala igual, así que no te preocupes si la
+  captura no queda exactamente en 1080px. Con que sea cuadrada basta.
+
+  ¿Quieres cambiar el texto? Edita lo que está entre las etiquetas
+  más abajo (busca "EDITABLE").
+  ============================================================
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pieza de lanzamiento · El Oficio Lateral</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Fredericka+the+Great&family=Kranky&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rosa: #f2aed5;
+      --rosa-medio: #c075a8;
+      --rosa-oscuro: #8f4a7a;
+      --gris: #d3d5da;
+      --navy: #2a2a35;
+      --crema: #fdf8f4;
+    }
+
+    body {
+      margin: 0;
+      background: #e9e3dd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 10px 60px;
+      font-family: 'Lora', serif;
+      color: var(--navy);
+    }
+
+    /* ===== LA PIEZA (cuadrado 1080x1080) ===== */
+    .pieza {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background-color: var(--crema);
+      /* rayado tipo cuaderno, igual que el body del sitio */
+      background-image: repeating-linear-gradient(
+        transparent, transparent 46px,
+        rgba(192,117,168,0.10) 46px, rgba(192,117,168,0.10) 47px
+      );
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+
+    /* corazones pixelados de fondo */
+    #heartCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* marco decorativo */
+    .marco {
+      position: absolute;
+      inset: 34px;
+      border: 4px dashed var(--rosa-medio);
+      z-index: 1;
+    }
+
+    /* barra marquee arriba */
+    .barra {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: var(--rosa-oscuro);
+      color: #fff;
+      font-family: 'Kranky', cursive;
+      font-size: 26px;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 14px 0;
+      z-index: 3;
+    }
+
+    .contenido {
+      position: absolute;
+      inset: 34px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 90px 70px 70px;
+    }
+
+    .logo {
+      font-family: 'Fredericka the Great', cursive;
+      color: var(--rosa-oscuro);
+      font-size: 46px;
+      letter-spacing: 0.02em;
+      margin-bottom: 40px;
+    }
+
+    .titular {
+      font-family: 'Kranky', cursive;
+      font-style: italic;
+      color: var(--navy);
+      font-size: 118px;
+      line-height: 1.02;
+      margin: 0 0 26px;
+      text-shadow: 3px 3px 0 var(--rosa);
+    }
+
+    .bajada {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 40px;
+      color: var(--rosa-oscuro);
+      margin: 0 0 46px;
+      max-width: 760px;
+    }
+
+    .divisor {
+      color: var(--rosa-medio);
+      font-size: 40px;
+      letter-spacing: 0.6rem;
+      margin: 8px 0 46px;
+    }
+
+    /* botón retro tipo fansite */
+    .boton {
+      display: inline-block;
+      font-family: 'Kranky', cursive;
+      font-size: 40px;
+      color: #fff;
+      background: var(--rosa-medio);
+      border: 4px solid var(--navy);
+      border-radius: 8px;
+      padding: 20px 54px;
+      box-shadow: 6px 6px 0 var(--rosa-oscuro);
+      margin-bottom: 40px;
+    }
+
+    .url {
+      font-family: 'Kranky', cursive;
+      font-size: 34px;
+      color: var(--navy);
+      background: var(--rosa);
+      border: 2px dotted var(--rosa-oscuro);
+      padding: 10px 22px;
+      margin-bottom: 34px;
+    }
+
+    .handle {
+      font-family: 'Lora', serif;
+      font-size: 32px;
+      color: var(--rosa-oscuro);
+    }
+
+    /* pie con la cita de marca */
+    .pie {
+      position: absolute;
+      bottom: 46px; left: 0; right: 0;
+      text-align: center;
+      z-index: 2;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 26px;
+      color: var(--rosa-medio);
+    }
+
+    .ayuda {
+      max-width: 560px;
+      text-align: center;
+      font-size: 15px;
+      color: #6b6b78;
+      line-height: 1.6;
+    }
+    .ayuda strong { color: var(--rosa-oscuro); }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== LA PIEZA ===================== -->
+  <div class="pieza" id="pieza">
+    <canvas id="heartCanvas"></canvas>
+    <div class="marco"></div>
+
+    <!-- barra superior estilo marquee (EDITABLE) -->
+    <div class="barra">✦ talleres · lectura · creación · biblioteca ✦</div>
+
+    <div class="contenido">
+      <!-- EDITABLE: nombre / logo -->
+      <div class="logo">El Oficio Lateral</div>
+
+      <!-- EDITABLE: titular grande -->
+      <h1 class="titular">Ya tenemos<br>casa</h1>
+
+      <!-- EDITABLE: bajada -->
+      <p class="bajada">El Oficio Lateral ahora tiene sitio web propio</p>
+
+      <div class="divisor">✦ ✿ ✦</div>
+
+      <!-- botón retro (decorativo) -->
+      <div class="boton">✎ Visítanos ✎</div>
+
+      <!-- EDITABLE: url -->
+      <div class="url">unanubet.github.io/eloficiolateral</div>
+
+      <!-- EDITABLE: handle -->
+      <div class="handle">@eloficiolateral</div>
+    </div>
+
+    <!-- EDITABLE: cita de cierre -->
+    <div class="pie">«Procura ser dichosa»</div>
+  </div>
+  <!-- =================== FIN DE LA PIEZA =================== -->
+
+  <p class="ayuda">
+    Para capturarla: achica con <strong>Ctrl y "-"</strong> hasta ver el cuadrado entero,
+    luego <strong>Windows + Shift + S</strong> y encierra solo el cuadrado.
+    Este texto gris no aparece si capturas solo la pieza.
+  </p>
+
+  <script>
+    // Corazones pixelados, misma idea que el header del sitio (index.html)
+    const canvas = document.getElementById('heartCanvas');
+    const pieza = document.getElementById('pieza');
+    canvas.width = pieza.offsetWidth;
+    canvas.height = pieza.offsetHeight;
+    const ctx = canvas.getContext('2d');
+
+    const p = 6; // tamaño del "pixel"
+    ctx.fillStyle = 'rgba(242,174,213,0.28)';
+    const heart = [
+      [0,1,1,0,1,1,0],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,0],
+      [0,0,1,1,1,0,0],
+      [0,0,0,1,0,0,0],
+    ];
+    for (let startY = 12; startY < canvas.height + 70; startY += 72) {
+      for (let startX = 12; startX < canvas.width + 76; startX += 76) {
+        heart.forEach((row, ry) => {
+          row.forEach((cell, rx) => {
+            if (cell) ctx.fillRect(startX + rx * p, startY + ry * p, p, p);
+          });
+        });
+      }
+    }
+  </script>
+</body>
+</html>
