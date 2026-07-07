@@ -640,6 +640,308 @@ section:nth-child(even) {
   text-align: center;
 }
 
+/* === AGENDA TU CLASE === */
+.agenda-intro {
+  max-width: 680px;
+  font-size: 1.05rem;
+  color: var(--texto);
+  margin-bottom: 2rem;
+}
+
+.calendly-inline-widget {
+  border: 2px dashed var(--rosa-medio);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px var(--rosa);
+  background: white;
+  overflow: hidden;
+}
+
+.agenda-fallback {
+  margin-top: 2rem;
+  text-align: center;
+  border-top: 1px dashed var(--gris);
+  padding-top: 1.5rem;
+}
+
+.agenda-fallback p {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+/* === TALLERES REALIZADOS === */
+.realizados-intro {
+  max-width: 680px;
+  font-size: 1.05rem;
+  color: var(--texto);
+  margin-bottom: 2rem;
+}
+
+.realizados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.realizado {
+  background: white;
+  border: 2px dashed var(--rosa-medio);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px var(--rosa);
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+}
+
+.realizado:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--rosa-medio);
+}
+
+.realizado-foto {
+  position: relative;
+  background: #fce8f3;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.realizado-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(60%);
+  transition: filter 0.4s ease;
+}
+
+.realizado:hover .realizado-foto img {
+  filter: grayscale(0%);
+}
+
+.realizado-anio {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.6rem;
+  font-family: var(--fuente-titulo);
+  font-size: 0.8rem;
+  color: white;
+  background-color: var(--rosa-oscuro);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+}
+
+.realizado-texto {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.realizado-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--rosa-medio);
+}
+
+.realizado-texto p:not(.realizado-tag) {
+  font-size: 0.92rem;
+  color: #555;
+}
+
+/* Galería de miniaturas */
+.realizado-thumbs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.realizado-thumbs img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid var(--gris);
+  cursor: pointer;
+  filter: grayscale(40%);
+  transition: filter 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.realizado-thumbs img:hover {
+  filter: grayscale(0%);
+  transform: translateY(-2px);
+}
+
+.realizado-thumbs img.thumb-activa {
+  border-color: var(--rosa-oscuro);
+  filter: grayscale(0%);
+}
+
+/* En la tarjeta con galería, la foto principal se ve completa (no recortada) */
+.realizado--galeria .realizado-foto {
+  aspect-ratio: auto;
+  max-height: 420px;
+  background: var(--navy);
+}
+
+.realizado--galeria .realizado-foto img {
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  filter: none;
+}
+
+/* === HISTORIAS (recortes scrapbook) === */
+.historias {
+  margin-top: 3.5rem;
+  border-top: 1px dashed var(--gris);
+  padding-top: 2.5rem;
+}
+
+.historias-titulo {
+  font-family: var(--fuente-titulo);
+  color: var(--rosa-oscuro);
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.historias-sub {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-bottom: 2.2rem;
+}
+
+.historias-tira {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 2.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.historia {
+  margin: 0;
+  position: relative;
+  background: white;
+  padding: 8px;
+  border: 1px solid var(--gris);
+  box-shadow: 5px 5px 0 var(--rosa);
+  transition: transform 0.2s;
+}
+
+.historia img,
+.historia video {
+  display: block;
+  width: 235px;
+  max-width: 72vw;
+  height: auto;
+}
+
+.historia--video { cursor: default; }
+
+.historia-pie {
+  font-family: var(--fuente-titulo);
+  font-size: 0.75rem;
+  color: var(--rosa-oscuro);
+  text-align: center;
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+}
+
+.historia:nth-child(1) { transform: rotate(-2.5deg); }
+.historia:nth-child(2) { transform: rotate(1.5deg); }
+.historia:nth-child(3) { transform: rotate(-1deg); }
+.historia:nth-child(4) { transform: rotate(2deg); }
+
+/* washi tape */
+.historia::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 78px;
+  height: 24px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(242,174,213,0.65),
+    rgba(242,174,213,0.65) 6px,
+    rgba(192,117,168,0.55) 6px,
+    rgba(192,117,168,0.55) 12px
+  );
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.historia:hover {
+  transform: rotate(0deg) scale(1.03);
+  z-index: 2;
+}
+
+/* el video no escala en hover, para no estorbar sus controles */
+.historia--video:hover { transform: rotate(2deg); }
+
+/* === BLOG === */
+.blog-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.entrada {
+  background: white;
+  border: 2px dashed var(--rosa-medio);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 4px 4px 0px var(--rosa);
+}
+
+.entrada-fecha {
+  font-family: var(--fuente-titulo);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--rosa-medio);
+  margin-bottom: 0.4rem;
+}
+
+.entrada h2 {
+  font-size: 1.6rem;
+  border-bottom: 3px dotted var(--rosa-medio);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.entrada-cuerpo p {
+  font-size: 1.02rem;
+  color: var(--texto);
+  margin-bottom: 1rem;
+}
+
+.entrada-cuerpo p:last-child {
+  margin-bottom: 0;
+}
+
+.entrada-cuerpo em {
+  color: var(--rosa-oscuro);
+}
+
+.blog-vacio {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+
 /* === MOBILE === */
 @media (max-width: 600px) {
   .cita-mistral {

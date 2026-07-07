@@ -1,0 +1,15 @@
+# Fotos originales SIN recortar (contienen rostros / escudos del colegio).
+# No deben publicarse. Las versiones seguras y recortadas viven en realizados/.
+4962309C-5518-46EF-A3A4-4393400D19DF.JPG
+CD4E3398-C788-4540-840E-00647D27B97B.JPG
+
+# Originales de iPhone en HEIC (por si copias alguno a la carpeta)
+*.HEIC
+*.heic
+
+# Videos originales de las historias (no los usa el sitio, pueden mostrar estudiantes)
+*.MOV
+*.mov
+*.mp4
+# ...pero el video ya procesado y seguro del sitio SÍ se publica:
+!realizados/historia-4.mp4

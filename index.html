@@ -46,9 +46,10 @@
       </div>
       <nav class="nav-principal">
         <a href="#talleres">Talleres</a>
-        <a href="#calendario">Calendario</a>
+        <a href="#agenda">Agenda tu clase</a>
+        <a href="#realizados">Talleres realizados</a>
+        <a href="blog.html">Blog</a>
         <a href="#biblioteca">Biblioteca</a>
-        <a href="#recomendaciones">Recomendaciones</a>
         <a href="calculadora-nem.html">Calculadora NEM</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -140,9 +141,154 @@
           </div>
           <a href="https://forms.gle/HwXZ4QaKpX6zcRbL8" target="_blank" class="btn-secundario">Inscribirme</a>
         </div>
+        <div class="tarjeta">
+          <span class="tarjeta-tag">Crochet · Tejido · Arte textil</span>
+          <span class="tarjeta-badge">Nuevo</span>
+          <h3>Club de Crochet y Cahuín</h3>
+          <p class="tarjeta-pregunta">¿Hay algo mejor que tejer y copuchar?</p>
+          <p>Sesiones semanales o quincenales de 2 horas en las que cada una avanza en su propio proyecto de crochet o tejido a dos agujas. Compartimos patrones y tips, y te ayudo a encontrar y leer diagramas de nivel principiante si lo necesitas. Con acceso a libros físicos y digitales, préstamo de materiales y una publicación al cierre del ciclo.</p>
+          <p class="tarjeta-meta">Presencial · 4 a 6 cupos</p>
+          <div class="tarjeta-precios">
+            <span class="precio-item">🧶 <strong>$40.000/mes</strong> — modalidad semanal (4 sesiones)</span>
+            <span class="precio-item">🧵 <strong>$24.000/mes</strong> — modalidad quincenal (2 sesiones)</span>
+            <span class="precio-nota">Incluye préstamo de materiales y acceso a la biblioteca de patrones</span>
+          </div>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf1zXGs0_Kftuf9BF-tzz-DDeJYp7MfpcYZcQ-Q-1cC62BWCA/viewform" target="_blank" class="btn-secundario">Inscribirme</a>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- AGENDA TU CLASE -->
+  <section class="agenda" id="agenda">
+    <div class="contenedor">
+      <h2>Agenda tu clase</h2>
+      <p class="agenda-intro">Elige el día y la hora que te acomoden para una clase particular o una conversación previa. Reservas en un par de clics, sin ida y vuelta de correos.</p>
+
+      <!--
+        Calendario Calendly ACTIVO: https://calendly.com/eloficiolateral0/inglesonline
+        Para cambiarlo (otro tipo de evento u horarios), reemplaza el enlace en data-url de abajo.
+        Si creas más tipos de evento en Calendly, cada uno tiene su propio enlace.
+      -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/eloficiolateral0/inglesonline"
+           style="min-width:320px;height:640px;"></div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+      <div class="agenda-fallback">
+        <p>¿Prefieres coordinar directamente? También puedes escribirme y buscamos un horario juntas.</p>
+        <a href="mailto:eloficiolateral0@gmail.com?subject=Agendar%20una%20clase" class="btn-secundario">Coordinar por correo</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divisor">✦ ✿ ✦ ✿ ✦</div>
+
+  <!-- TALLERES REALIZADOS -->
+  <section class="realizados" id="realizados">
+    <div class="contenedor">
+      <h2>Talleres realizados</h2>
+      <p class="realizados-intro">Un registro de los talleres, laboratorios y clubes que ya pasaron por El Oficio Lateral. La memoria de todo lo que hemos leído y creado juntas.</p>
+
+      <!--
+        Para agregar un taller realizado: copia un bloque <article class="realizado">…</article>
+        completo y pégalo aquí abajo, cambiando la imagen, el año, el título y la reseña.
+        Las imágenes: guárdalas en la carpeta del sitio y reemplaza "logo.png" por el nombre
+        del archivo (ej: realizados/habra-nuevos-soles.jpg). Si aún no tienes foto, deja logo.png.
+      -->
+      <div class="realizados-grid">
+
+        <article class="realizado realizado--galeria">
+          <div class="realizado-foto">
+            <img id="hns-principal" src="realizados/habra-nuevos-soles-1.jpg" alt="Taller Habrá Nuevos Soles" loading="lazy">
+            <span class="realizado-anio">2025</span>
+          </div>
+          <div class="realizado-texto">
+            <h3>Habrá Nuevos Soles</h3>
+            <p class="realizado-tag">Literatura · Distopías</p>
+            <p>Lectura colectiva y escritura creativa en torno a Margaret Atwood, Octavia E. Butler y Úrsula K. Le Guin. Tres sesiones para imaginar futuros posibles desde la voz de las escritoras del siglo veinte.</p>
+            <!-- Galería: para agregar o quitar fotos, copia/borra una miniatura y su archivo en la carpeta realizados/ -->
+            <div class="realizado-thumbs" role="group" aria-label="Fotos del taller">
+              <img src="realizados/habra-nuevos-soles-1.jpg" alt="Foto 1 del taller" class="thumb-activa" onclick="verFoto(this)" loading="lazy">
+              <img src="realizados/habra-nuevos-soles-2.jpg" alt="Foto 2 del taller" onclick="verFoto(this)" loading="lazy">
+              <img src="realizados/habra-nuevos-soles-3.jpg" alt="Foto 3 del taller" onclick="verFoto(this)" loading="lazy">
+              <img src="realizados/habra-nuevos-soles-4.jpg" alt="Foto 4 del taller" onclick="verFoto(this)" loading="lazy">
+              <img src="realizados/habra-nuevos-soles-5.jpg" alt="Foto 5 del taller" onclick="verFoto(this)" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+        <article class="realizado realizado--galeria">
+          <div class="realizado-foto">
+            <img src="realizados/desbloqueo-lector-1.jpg" alt="Laboratorio Desbloqueo Lector" loading="lazy">
+            <span class="realizado-anio">2026</span>
+          </div>
+          <div class="realizado-texto">
+            <h3>Desbloqueo Lector</h3>
+            <p class="realizado-tag">Lectura estratégica · PAES</p>
+            <p>Laboratorio de lectura estratégica para estudiantes de IV medio, centrado tanto en las habilidades de comprensión como en la confianza académica y el bienestar emocional.</p>
+            <div class="realizado-thumbs" role="group" aria-label="Fotos del laboratorio">
+              <img src="realizados/desbloqueo-lector-1.jpg" alt="Materiales de trabajo" class="thumb-activa" onclick="verFoto(this)" loading="lazy">
+              <img src="realizados/desbloqueo-lector-2.jpg" alt="Mesa de trabajo con flores" onclick="verFoto(this)" loading="lazy">
+              <img src="realizados/desbloqueo-lector-3.jpg" alt="Sesión de lectura" onclick="verFoto(this)" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+        <article class="realizado">
+          <div class="realizado-foto">
+            <img src="logo.png" alt="Taller en Von Refugio" loading="lazy">
+            <span class="realizado-anio">2024</span>
+          </div>
+          <div class="realizado-texto">
+            <h3>Talleres en Von Refugio</h3>
+            <p class="realizado-tag">Literatura · Cine</p>
+            <p>Ciclo de talleres presenciales nacidos desde mis propias inquietudes: lectura, cine y creación en un espacio de encuentro y refugio. (Edita esta reseña con los detalles que quieras destacar.)</p>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Recortes de historias de Instagram (testimonios). Para agregar otro, copia un <figure class="historia">…</figure> -->
+      <div class="historias">
+        <h3 class="historias-titulo">De nuestras historias</h3>
+        <p class="historias-sub">Palabras y momentos que quedaron de las clases, tal como salieron en Instagram.</p>
+        <div class="historias-tira">
+          <figure class="historia">
+            <img src="realizados/historia-1.jpg" alt="Historia: «me encanta el taller de los jueves»" loading="lazy">
+          </figure>
+          <figure class="historia">
+            <img src="realizados/historia-2.jpg" alt="Historia: «gracias por venir»" loading="lazy">
+          </figure>
+          <figure class="historia">
+            <img src="realizados/historia-3.jpg" alt="Historia: «hoy puse flores porque día del libro»" loading="lazy">
+          </figure>
+          <figure class="historia historia--video">
+            <video src="realizados/historia-4.mp4" poster="realizados/historia-4-poster.jpg"
+                   controls loop playsinline preload="metadata"
+                   aria-label="Video: Taller del jueves, con música">
+            </video>
+            <figcaption class="historia-pie">▶ con sonido</figcaption>
+          </figure>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function verFoto(thumb) {
+      var tarjeta = thumb.closest('.realizado');
+      var principal = tarjeta.querySelector('.realizado-foto img');
+      principal.src = thumb.src;
+      thumb.parentElement.querySelectorAll('img').forEach(function (t) {
+        t.classList.remove('thumb-activa');
+      });
+      thumb.classList.add('thumb-activa');
+    }
+  </script>
+
+  <div class="divisor">✦ ✿ ✦ ✿ ✦</div>
 
   <!-- CALENDARIO -->
   <section class="calendario" id="calendario">
