@@ -13,3 +13,11 @@ CD4E3398-C788-4540-840E-00647D27B97B.JPG
 *.mp4
 # ...pero el video ya procesado y seguro del sitio SÍ se publica:
 !realizados/historia-4.mp4
+
+# Afiches en curso, todavía no listos para publicar
+Afiches Talleres/
+
+# Capturas de referencia de diseño (gurl.com, bancos de imágenes) — no son del sitio
+# y algunas pueden tener derechos de autor de terceros, no subir al repo público.
+Recortes gURL/
+Corazón Pixeles/

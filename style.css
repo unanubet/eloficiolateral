@@ -1,15 +1,37 @@
 /* === VARIABLES === */
 :root {
   --rosa: #f2aed5;
-  --gris: #d3d5da;
+  --gris: #b3c4d6; /* celeste grisáceo (antes gris neutro puro) */
   --rosa-medio: #c075a8;
   --rosa-oscuro: #8f4a7a;
+  --lila: #b6a2d6;
+  --amarillo: #f2d675;
   --navy: #2a2a35;
   --crema: #fdf8f4;
   --texto: #2a2a35;
   --fuente-titulo: 'Kranky', cursive;
   --fuente-logo: 'Fredericka the Great', cursive;
   --fuente-cuerpo: 'Lora', serif;
+  --fuente-outline: 'SensaWild Outline', cursive;
+  --fuente-fill: 'SensaWild Fill', cursive;
+}
+
+@font-face {
+  font-family: 'SensaWild Outline';
+  src: url('Fuentes/SensaWild-LineOutlineShade.woff2') format('woff2'),
+       url('Fuentes/SensaWild-LineOutlineShade.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SensaWild Fill';
+  src: url('Fuentes/SensaWild-Fill.woff2') format('woff2'),
+       url('Fuentes/SensaWild-Fill.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* === RESET === */
@@ -121,9 +143,9 @@ h3 {
 }
 
 .logo-texto {
-  font-family: var(--fuente-logo);
+  font-family: var(--fuente-outline);
   color: #fce8f3;
-  font-size: 2rem;
+  font-size: 3rem;
   letter-spacing: 0.02em;
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
   position: relative;
@@ -239,8 +261,10 @@ h3 {
   color: var(--rosa);
   padding: 0.75rem 2rem;
   border-radius: 999px;
-  font-family: 'Kranky', cursive;
+  font-family: var(--fuente-fill);
   font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-align: center;
   transition: background-color 0.2s;
 }
 
@@ -256,8 +280,10 @@ h3 {
   color: var(--rosa-medio);
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
-  font-family: 'Kranky', cursive;
+  font-family: var(--fuente-fill);
   font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-align: center;
   transition: all 0.2s;
 }
 
@@ -323,17 +349,23 @@ section:nth-child(even) {
 
 .presentacion-foto {
   flex-shrink: 0;
+  width: 220px;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 4px solid var(--rosa);
+  box-shadow: 6px 6px 0px var(--rosa-medio);
 }
 
 .foto-nati {
-  width: 220px;
-  height: 280px;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
-  border-radius: 12px;
+  object-position: center 10%;
+  transform: scale(1.2);
+  transform-origin: 50% 85%;
   filter: grayscale(100%);
-  border: 4px solid var(--rosa);
-  box-shadow: 6px 6px 0px var(--rosa-medio);
 }
 
 .foto-nati:hover {
@@ -354,7 +386,7 @@ section:nth-child(even) {
     align-items: flex-start;
   }
 
-  .foto-nati {
+  .presentacion-foto {
     width: 100%;
     height: 260px;
   }
