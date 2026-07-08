@@ -679,8 +679,14 @@ section:nth-child(even) {
 
 .realizados-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 700px) {
+  .realizados-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .realizado {
@@ -701,16 +707,18 @@ section:nth-child(even) {
 
 .realizado-foto {
   position: relative;
-  background: #fce8f3;
-  aspect-ratio: 3 / 2;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
 .realizado-foto img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  max-height: 240px;
+  object-fit: contain;
   display: block;
   filter: grayscale(60%);
   transition: filter 0.4s ease;
@@ -733,14 +741,19 @@ section:nth-child(even) {
 }
 
 .realizado-texto {
-  padding: 1.25rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
+}
+
+.realizado-texto h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
 }
 
 .realizado-tag {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -748,21 +761,30 @@ section:nth-child(even) {
 }
 
 .realizado-texto p:not(.realizado-tag) {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   color: #555;
 }
 
-/* Galería de miniaturas */
+/* Galería de miniaturas: el afiche va primero, separado por una línea de las fotos reales */
 .realizado-thumbs {
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.35rem;
   flex-wrap: wrap;
   margin-top: 0.5rem;
 }
 
+.realizado-thumbs-divisor {
+  width: 1px;
+  align-self: stretch;
+  min-height: 38px;
+  background: var(--gris);
+  margin: 0 0.15rem;
+}
+
 .realizado-thumbs img {
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   object-fit: cover;
   border-radius: 4px;
   border: 2px solid var(--gris);
@@ -779,20 +801,6 @@ section:nth-child(even) {
 .realizado-thumbs img.thumb-activa {
   border-color: var(--rosa-oscuro);
   filter: grayscale(0%);
-}
-
-/* En la tarjeta con galería, la foto principal se ve completa (no recortada) */
-.realizado--galeria .realizado-foto {
-  aspect-ratio: auto;
-  max-height: 420px;
-  background: var(--navy);
-}
-
-.realizado--galeria .realizado-foto img {
-  height: auto;
-  max-height: 420px;
-  object-fit: contain;
-  filter: none;
 }
 
 /* === HISTORIAS (recortes scrapbook) === */
