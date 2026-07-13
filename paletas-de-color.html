@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paletas de color · El Oficio Lateral</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #F5F4F2;
+    color: #2E2E2E;
+    padding: 48px 24px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 {
+    font-size: 26px;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .sub {
+    color: #6B6B6B;
+    font-size: 14px;
+    margin-bottom: 48px;
+  }
+  section { margin-bottom: 52px; }
+  h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    color: #2E2E2E;
+  }
+  .section-desc {
+    font-size: 13px;
+    color: #6B6B6B;
+    margin-bottom: 18px;
+  }
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+  }
+  .swatch {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    cursor: pointer;
+    position: relative;
+  }
+  .swatch-color {
+    height: 90px;
+    width: 100%;
+  }
+  .swatch-info {
+    padding: 10px 12px;
+  }
+  .swatch-name {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-size: 12px;
+    font-family: 'SF Mono', Consolas, monospace;
+    color: #6B6B6B;
+  }
+  .copied-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255,255,255,0.9);
+    color: #2E2E2E;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .swatch.copied .copied-tag { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Paletas de color</h1>
+  <p class="sub">El Oficio Lateral — clic en cualquier color para copiar el hex</p>
+
+  <section>
+    <h2>Paleta de la foto (collage de letras)</h2>
+    <p class="section-desc">Extraída de la foto de flores — para recolorear las letras de "Buenas Artes"</p>
+    <div class="swatches">
+      <div class="swatch" data-hex="#D87E03"><div class="swatch-color" style="background:#D87E03"></div><div class="swatch-info"><div class="swatch-name">Mostaza</div><div class="swatch-hex">#D87E03</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#8A1E1B"><div class="swatch-color" style="background:#8A1E1B"></div><div class="swatch-info"><div class="swatch-name">Vino oscuro</div><div class="swatch-hex">#8A1E1B</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#C4415B"><div class="swatch-color" style="background:#C4415B"></div><div class="swatch-info"><div class="swatch-name">Rosa magenta</div><div class="swatch-hex">#C4415B</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#7A7F29"><div class="swatch-color" style="background:#7A7F29"></div><div class="swatch-info"><div class="swatch-name">Verde oliva</div><div class="swatch-hex">#7A7F29</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#C8AC56"><div class="swatch-color" style="background:#C8AC56"></div><div class="swatch-info"><div class="swatch-name">Dorado arena</div><div class="swatch-hex">#C8AC56</div></div><div class="copied-tag">Copiado</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>El Oficio Lateral — marca</h2>
+    <p class="section-desc">Magenta y gris — identidad de marca (informes, materiales de Desbloqueo Lector)</p>
+    <div class="swatches">
+      <div class="swatch" data-hex="#D63F7A"><div class="swatch-color" style="background:#D63F7A"></div><div class="swatch-info"><div class="swatch-name">Magenta</div><div class="swatch-hex">#D63F7A</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#E8789F"><div class="swatch-color" style="background:#E8789F"></div><div class="swatch-info"><div class="swatch-name">Magenta medio</div><div class="swatch-hex">#E8789F</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#F7D6E7"><div class="swatch-color" style="background:#F7D6E7"></div><div class="swatch-info"><div class="swatch-name">Magenta claro</div><div class="swatch-hex">#F7D6E7</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#FDF0F6"><div class="swatch-color" style="background:#FDF0F6"></div><div class="swatch-info"><div class="swatch-name">Magenta pálido</div><div class="swatch-hex">#FDF0F6</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#2E2E2E"><div class="swatch-color" style="background:#2E2E2E"></div><div class="swatch-info"><div class="swatch-name">Gris oscuro</div><div class="swatch-hex">#2E2E2E</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#6B6B6B"><div class="swatch-color" style="background:#6B6B6B"></div><div class="swatch-info"><div class="swatch-name">Gris medio</div><div class="swatch-hex">#6B6B6B</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#E8E6E4"><div class="swatch-color" style="background:#E8E6E4"></div><div class="swatch-info"><div class="swatch-name">Gris claro</div><div class="swatch-hex">#E8E6E4</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#F5F4F2"><div class="swatch-color" style="background:#F5F4F2"></div><div class="swatch-info"><div class="swatch-name">Gris pálido</div><div class="swatch-hex">#F5F4F2</div></div><div class="copied-tag">Copiado</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sitio web — eloficiolateral.github.io</h2>
+    <p class="section-desc">Navy, gris y magentas — directo del CSS del sitio publicado</p>
+    <div class="swatches">
+      <div class="swatch" data-hex="#2A2A35"><div class="swatch-color" style="background:#2A2A35"></div><div class="swatch-info"><div class="swatch-name">Navy (texto)</div><div class="swatch-hex">#2A2A35</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#B3C4D6"><div class="swatch-color" style="background:#B3C4D6"></div><div class="swatch-info"><div class="swatch-name">Gris (celeste grisáceo)</div><div class="swatch-hex">#B3C4D6</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#F2AED5"><div class="swatch-color" style="background:#F2AED5"></div><div class="swatch-info"><div class="swatch-name">Rosa</div><div class="swatch-hex">#F2AED5</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#C075A8"><div class="swatch-color" style="background:#C075A8"></div><div class="swatch-info"><div class="swatch-name">Rosa medio</div><div class="swatch-hex">#C075A8</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#8F4A7A"><div class="swatch-color" style="background:#8F4A7A"></div><div class="swatch-info"><div class="swatch-name">Rosa oscuro</div><div class="swatch-hex">#8F4A7A</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#B6A2D6"><div class="swatch-color" style="background:#B6A2D6"></div><div class="swatch-info"><div class="swatch-name">Lila</div><div class="swatch-hex">#B6A2D6</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#F2D675"><div class="swatch-color" style="background:#F2D675"></div><div class="swatch-info"><div class="swatch-name">Amarillo</div><div class="swatch-hex">#F2D675</div></div><div class="copied-tag">Copiado</div></div>
+      <div class="swatch" data-hex="#FDF8F4"><div class="swatch-color" style="background:#FDF8F4"></div><div class="swatch-info"><div class="swatch-name">Crema</div><div class="swatch-hex">#FDF8F4</div></div><div class="copied-tag">Copiado</div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.swatch').forEach(el => {
+  el.addEventListener('click', () => {
+    const hex = el.getAttribute('data-hex');
+    navigator.clipboard.writeText(hex).catch(()=>{});
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 900);
+  });
+});
+</script>
+</body>
+</html>
