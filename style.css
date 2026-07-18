@@ -70,6 +70,7 @@ a:hover {
 
 h2 {
   font-family: var(--fuente-titulo);
+  font-weight: normal;
   color: var(--rosa-oscuro);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -80,9 +81,12 @@ h2 {
 
 h3 {
   font-family: var(--fuente-titulo);
+  font-weight: normal;
   color: var(--rosa-medio);
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* === CONTENEDOR === */
@@ -97,15 +101,47 @@ h3 {
   background-color: var(--rosa-oscuro);
   color: white;
   font-size: 0.8rem;
-  padding: 0.4rem 0;
+  padding: 0.4rem 0.75rem;
   overflow: hidden;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .marquee-barra marquee {
-  font-family: 'Kranky', cursive;
+  font-family: var(--fuente-fill);
   font-size: 1rem;
   letter-spacing: 0.08rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.marquee-pausa {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--crema);
+  color: var(--crema);
+  border-radius: 999px;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marquee-pausa:hover {
+  background-color: var(--crema);
+  color: var(--rosa-oscuro);
+}
+
+.marquee-pausa:focus-visible {
+  outline: 2px solid var(--crema);
+  outline-offset: 2px;
 }
 
 /* === HEADER === */
@@ -160,7 +196,7 @@ h3 {
 
 .nav-principal a {
   color: var(--gris);
-  font-family: 'Kranky', cursive;
+  font-family: var(--fuente-fill);
   font-size: 1rem;
   font-weight: 400;
   transition: color 0.2s;
@@ -284,7 +320,7 @@ h3 {
   font-size: 1rem;
   letter-spacing: 0.02em;
   text-align: center;
-  transition: all 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .btn-secundario:hover {
@@ -401,6 +437,7 @@ section:nth-child(even) {
 }
 
 .tarjeta {
+  position: relative;
   background: white;
   border: 2px dashed var(--rosa-medio);
   border-radius: 12px;
@@ -412,9 +449,44 @@ section:nth-child(even) {
   transition: transform 0.15s, box-shadow 0.15s;
 }
 
+.tarjeta > p:not([class]) {
+  text-align: justify;
+}
+
+.tarjeta > *:last-child {
+  margin-top: auto;
+}
+
 .tarjeta:hover {
-  transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px var(--rosa-medio);
+  z-index: 20;
+}
+
+.tarjeta h3 {
+  text-align: center;
+}
+
+.tarjeta-foto {
+  position: relative;
+  margin: -1.5rem -1.5rem 0;
+  border-radius: 10px 10px 0 0;
+  overflow: visible;
+}
+
+.tarjeta-foto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+  transform-origin: top center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-radius 0.25s ease;
+}
+
+.tarjeta-foto:hover img {
+  transform: scale(1.8);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  z-index: 5;
 }
 
 .tarjeta-badge {
@@ -438,7 +510,7 @@ section:nth-child(even) {
   background-color: #fce8f3;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  align-self: flex-start;
+  align-self: center;
 }
 
 /* === BIBLIOTECA ACCESO === */
@@ -573,7 +645,8 @@ section:nth-child(even) {
 }
 
 .tarjeta-pregunta {
-  font-style: italic;
+  text-align: center;
+  font-weight: 600;
   color: var(--rosa-oscuro);
   font-size: 0.95rem;
 }
@@ -833,6 +906,11 @@ section:nth-child(even) {
 .realizado-thumbs img.thumb-activa {
   border-color: var(--rosa-oscuro);
   filter: grayscale(0%);
+}
+
+.realizado-thumbs img:focus-visible {
+  outline: 2px solid var(--rosa-oscuro);
+  outline-offset: 2px;
 }
 
 /* === HISTORIAS (recortes scrapbook) === */

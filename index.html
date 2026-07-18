@@ -31,10 +31,33 @@
 
   <!-- MARQUEE -->
   <div class="marquee-barra">
-    <marquee behavior="scroll" direction="left" scrollamount="3">
-      ✦ Talleres online y presenciales &nbsp;&nbsp; ❧ Clubes de creación &nbsp;&nbsp; ★ Clases particulares &nbsp;&nbsp; ✿ Laboratorios de lectura &nbsp;&nbsp; ⟡ Desbloqueo lector &nbsp;&nbsp; ✎ Biblioteca digital &nbsp;&nbsp;
+    <button type="button" class="marquee-pausa" id="marquee-pausa" aria-pressed="false" aria-label="Pausar texto en movimiento">⏸</button>
+    <marquee behavior="scroll" direction="left" scrollamount="3" id="marquee-texto">
+      🌸 Talleres &nbsp;&nbsp; 🧶 Clubes de creación &nbsp;&nbsp; 📔 Clases particulares &nbsp;&nbsp; 📖 Biblioteca Lateral &nbsp;&nbsp; 🎀 Herramientas &nbsp;&nbsp; 💌 Y otras cositas &nbsp;&nbsp;
     </marquee>
   </div>
+
+  <script>
+    (function () {
+      var marquee = document.getElementById('marquee-texto');
+      var boton = document.getElementById('marquee-pausa');
+      var pausado = false;
+      boton.addEventListener('click', function () {
+        pausado = !pausado;
+        if (pausado) {
+          marquee.stop();
+          boton.textContent = '▶';
+          boton.setAttribute('aria-pressed', 'true');
+          boton.setAttribute('aria-label', 'Reanudar texto en movimiento');
+        } else {
+          marquee.start();
+          boton.textContent = '⏸';
+          boton.setAttribute('aria-pressed', 'false');
+          boton.setAttribute('aria-label', 'Pausar texto en movimiento');
+        }
+      });
+    })();
+  </script>
 
   <!-- HEADER -->
   <header class="site-header" id="site-header">
@@ -46,11 +69,9 @@
       </div>
       <nav class="nav-principal">
         <a href="#talleres">Talleres</a>
-        <a href="#agenda">Agenda tu clase</a>
-        <a href="#realizados">Talleres realizados</a>
-        <a href="blog.html">Blog</a>
+        <a href="#realizados">Registro</a>
         <a href="#biblioteca">Biblioteca</a>
-        <a href="calculadora-nem.html">Calculadora NEM</a>
+        <a href="#herramientas">Herramientas</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -63,7 +84,7 @@
       <p class="cita-autor">por Gabriela Mistral, <a href="https://www.bibliotecanacionaldigital.gob.cl/colecciones/BND/00/AE/AE0014553.pdf" target="_blank">1933</a></p>
       <p class="cita-epigrafe">«En varias partes algunas gentes me han preguntado<br>sobre mi vida y mi reparto en dos oficios<br>que no son nada gemelos sino opuestos».</p>
       <blockquote class="cita-cuerpo">
-        <p>«Una especie de fatalidad pesa sobre maestros y profesores [...]</p>
+        <p>«Una especie de fatalidad pesa sobre maestros y profesores […]</p>
         <p>Ellos seguirán siendo los grandes afligidos dentro del presupuesto graso de las naciones ricas y de los erarios más o menos holgados; los sueldos suculentos serán siempre absorbidos por el Ejército y la Armada, la alta magistratura y la plana mayor de la política. Afligidos dije y no plañideros, pues cada instructor parece llamarse «el Sopórtalo-todo». [...]</p>
         <p><strong>La invención del oficio lateral trae en tal momento la salvación.</strong> Ella busca quebrar la raya demasiado geométrica de la pedagogía estática, dándole un disparadero hacia direcciones inéditas y vitales. <strong>El pobre maestro debe salvarse a sí mismo y salvar a los niños dentro de su propia salvación. Llegue, pues, el oficio segundón, a la hora de la crisis, cuando el tedio ya aparece en su fea desnudez; venga cualquiera cosa nueva y fértil, y ojalá ella sea pariente de la creación, a fin de que nos saque del atolladero.»</strong></p>
       </blockquote>
@@ -113,82 +134,71 @@
   <!-- TALLERES PRÓXIMOS -->
   <section class="talleres" id="talleres">
     <div class="contenedor">
-      <h2>Talleres próximos</h2>
+      <h2>Próximos talleres</h2>
+      <!--
+        Imágenes de tarjeta: guárdalas en la carpeta del sitio y reemplaza "logo.png"
+        por el nombre del archivo. Si aún no tienes foto, deja logo.png.
+      -->
       <div class="tarjetas">
         <div class="tarjeta">
+          <div class="tarjeta-foto">
+            <img src="realizados/afiche-habra-nuevos-soles-2026.png" alt="Afiche del taller Habrá Nuevos Soles, edición agosto 2026" loading="lazy">
+          </div>
           <span class="tarjeta-tag">Literatura · Distopías</span>
-          <span class="tarjeta-badge">Próximamente</span>
+          <span class="tarjeta-badge">Inscripciones abiertas</span>
           <h3>Habrá Nuevos Soles</h3>
-          <p class="tarjeta-pregunta">¿Cómo imaginaban el futuro las escritoras en el siglo veinte?</p>
-          <p>3 sesiones de lectura colectiva, diálogo audiovisual y escritura creativa en torno a Margaret Atwood, Octavia E. Butler y Úrsula K. Le Guin.</p>
-          <p class="tarjeta-meta">Presencial y online · Cupos muy limitados</p>
+          <p class="tarjeta-pregunta">¿La realidad se está poniendo distópica?</p>
+          <p>Sesiones semanales de 2 horas dedicadas a la lectura crítica, el diálogo y análisis de textos y piezas audiovisuales que abordan distopías escritas por 3 autoras durante el siglo XX: Margaret Atwood, Octavia E. Butler y Úrsula K. Le Guin. A través de la lectura de textos breves y variados nos aproximaremos a la biografía de las autoras y sus perspectivas sobre un futuro distópico.</p>
+          <p class="tarjeta-meta">Presencial y online · Grupos pequeños · Cupos muy limitados</p>
           <div class="tarjeta-precios">
             <span class="precio-item">🔮 <strong>$50.000</strong> — ciclo completo (3 sesiones)</span>
             <span class="precio-item">🗝️ <strong>$20.000</strong> — clase individual</span>
+            <span class="precio-nota">Incluye el material de lectura en formato físico y/o digital</span>
           </div>
-          <a href="https://forms.gle/HwXZ4QaKpX6zcRbL8" target="_blank" class="btn-secundario">Inscribirme</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx9FjcXs-laWQ9li5RqHNoZYxFJU_dqIMwjwOFXe490EL2lA/viewform?usp=publish-editor" target="_blank" class="btn-secundario">Inscribirme</a>
         </div>
         <div class="tarjeta">
-          <span class="tarjeta-tag">Lectura estratégica · PAES</span>
-          <span class="tarjeta-badge">En curso</span>
-          <h3>Desbloqueo Lector</h3>
-          <p class="tarjeta-pregunta">¿Tienes problemas de ansiedad, disposición o estrategia para enfrentar la lectura?</p>
-          <p>Laboratorio de lectura estratégica para estudiantes de IV medio en grupos reducidos. A diferencia de un preuniversitario tradicional, el trabajo se centra tanto en las habilidades de comprensión como en la confianza académica y el bienestar emocional, con acompañamiento personalizado y seguimiento constante.</p>
-          <p class="tarjeta-meta">Presencial · Cupos muy limitados</p>
-          <div class="tarjeta-precios">
-            <span class="precio-item"><strong>$800.000</strong> — programa completo (8 meses)</span>
-            <span class="precio-nota">Pago en 1 o 2 cuotas · 2 hrs semanales + acompañamiento asincrónico</span>
-            <span class="precio-item"><strong>$110.000/mes</strong> — pago mensual</span>
+          <div class="tarjeta-foto">
+            <img src="realizados/afiche-club-crochet.png" alt="Afiche del Club de Crochet y Cahuín" loading="lazy">
           </div>
-          <a href="https://forms.gle/HwXZ4QaKpX6zcRbL8" target="_blank" class="btn-secundario">Inscribirme</a>
-        </div>
-        <div class="tarjeta">
-          <span class="tarjeta-tag">Crochet · Tejido · Arte textil</span>
-          <span class="tarjeta-badge">Nuevo</span>
+          <span class="tarjeta-tag">Crochet · Tejido</span>
+          <span class="tarjeta-badge">Inscripciones abiertas</span>
           <h3>Club de Crochet y Cahuín</h3>
           <p class="tarjeta-pregunta">¿Hay algo mejor que tejer y copuchar?</p>
           <p>Sesiones semanales o quincenales de 2 horas en las que cada una avanza en su propio proyecto de crochet o tejido a dos agujas. Compartimos patrones y tips, y te ayudo a encontrar y leer diagramas de nivel principiante si lo necesitas. Con acceso a libros físicos y digitales, préstamo de materiales y una publicación al cierre del ciclo.</p>
-          <p class="tarjeta-meta">Presencial · 4 a 6 cupos</p>
+          <p class="tarjeta-meta">Presencial · Grupos pequeños · Cupos muy limitados</p>
           <div class="tarjeta-precios">
             <span class="precio-item">🧶 <strong>$40.000/mes</strong> — modalidad semanal (4 sesiones)</span>
             <span class="precio-item">🧵 <strong>$24.000/mes</strong> — modalidad quincenal (2 sesiones)</span>
-            <span class="precio-nota">Incluye préstamo de materiales y acceso a la biblioteca de patrones</span>
+            <span class="precio-nota">Incluye uso de materiales y préstamo de herramientas</span>
           </div>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSf1zXGs0_Kftuf9BF-tzz-DDeJYp7MfpcYZcQ-Q-1cC62BWCA/viewform" target="_blank" class="btn-secundario">Inscribirme</a>
+        </div>
+        <div class="tarjeta">
+          <div class="tarjeta-foto">
+            <img src="realizados/afiche-buenas-artes.png" alt="Afiche del taller Buenas Artes" loading="lazy">
+          </div>
+          <span class="tarjeta-tag">Arte · Técnicas mixtas</span>
+          <span class="tarjeta-badge">Inscripciones abiertas</span>
+          <h3>Buenas Artes</h3>
+          <p class="tarjeta-pregunta">¿Necesitas una pausa creativa en tu semana?</p>
+          <p>Sesiones semanales o quincenales de creación conjunta de técnicas variadas. Puedes traer alguna obra en proceso o comenzar desde cero aquí incorporando los materiales del taller. El objetivo del taller es conversar y reflexionar sobre el trabajo creativo como acto de autocuidado, expresión y resistencia.</p>
+          <p class="tarjeta-meta">Presencial · Grupos pequeños · Cupos muy limitados</p>
+          <div class="tarjeta-precios">
+            <span class="precio-item">🎨 <strong>$75.000/mes</strong> — modalidad semanal (4 sesiones)</span>
+            <span class="precio-item">🖌️ <strong>$45.000/mes</strong> — modalidad quincenal (2 sesiones)</span>
+            <span class="precio-nota">Incluye uso de materiales y préstamo de herramientas</span>
+          </div>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeWN1v9JlnGnlx2P4TaS-zVnnIdn2qtE1f21XIrc4MraNLt8Q/viewform?usp=header" target="_blank" class="btn-secundario">Inscribirme</a>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- AGENDA TU CLASE -->
-  <section class="agenda" id="agenda">
-    <div class="contenedor">
-      <h2>Agenda tu clase</h2>
-      <p class="agenda-intro">Elige el día y la hora que te acomoden para una clase particular o una conversación previa. Reservas en un par de clics, sin ida y vuelta de correos.</p>
-
-      <!--
-        Calendario Calendly ACTIVO: https://calendly.com/eloficiolateral0/inglesonline
-        Para cambiarlo (otro tipo de evento u horarios), reemplaza el enlace en data-url de abajo.
-        Si creas más tipos de evento en Calendly, cada uno tiene su propio enlace.
-      -->
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/eloficiolateral0/inglesonline"
-           style="min-width:320px;height:640px;"></div>
-      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-      <div class="agenda-fallback">
-        <p>¿Prefieres coordinar directamente? También puedes escribirme y buscamos un horario juntas.</p>
-        <a href="mailto:eloficiolateral0@gmail.com?subject=Agendar%20una%20clase" class="btn-secundario">Coordinar por correo</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="divisor">✦ ✿ ✦ ✿ ✦</div>
 
   <!-- TALLERES REALIZADOS -->
   <section class="realizados" id="realizados">
     <div class="contenedor">
-      <h2>Talleres realizados</h2>
+      <h2>Registro de talleres realizados</h2>
       <p class="realizados-intro">Un registro de los talleres, laboratorios y clubes que ya pasaron por El Oficio Lateral. La memoria de todo lo que hemos leído y creado juntas.</p>
 
       <!--
@@ -256,8 +266,8 @@
 
       <!-- Recortes de historias de Instagram (testimonios). Para agregar otro, copia un <figure class="historia">…</figure> -->
       <div class="historias">
-        <h3 class="historias-titulo">De nuestras historias</h3>
-        <p class="historias-sub">Palabras y momentos que quedaron de las clases, tal como salieron en Instagram.</p>
+        <h3 class="historias-titulo">Historias destacadas</h3>
+        <p class="historias-sub">A veces me acuerdo de sacar y pedir fotos de nuestras actividades... aquí algunas (si tienes más, ¿me mandas porfis?)</p>
         <div class="historias-tira">
           <figure class="historia">
             <img src="realizados/historia-1.jpg" alt="Historia: «me encanta el taller de los jueves»" loading="lazy">
@@ -267,13 +277,6 @@
           </figure>
           <figure class="historia">
             <img src="realizados/historia-3.jpg" alt="Historia: «hoy puse flores porque día del libro»" loading="lazy">
-          </figure>
-          <figure class="historia historia--video">
-            <video src="realizados/historia-4.mp4" poster="realizados/historia-4-poster.jpg"
-                   controls loop playsinline preload="metadata"
-                   aria-label="Video: Taller del jueves, con música">
-            </video>
-            <figcaption class="historia-pie">▶ con sonido</figcaption>
           </figure>
         </div>
       </div>
@@ -291,22 +294,34 @@
       });
       thumb.classList.add('thumb-activa');
     }
+
+    document.querySelectorAll('.realizado-thumbs img').forEach(function (img) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          verFoto(img);
+        }
+      });
+    });
   </script>
 
   <div class="divisor">✦ ✿ ✦ ✿ ✦</div>
 
-  <!-- CALENDARIO -->
+  <!-- CALENDARIO: oculto por el momento. Para reactivar, saca este comentario.
   <section class="calendario" id="calendario">
     <div class="contenedor">
       <h2>Calendario cultural</h2>
       <p>Próximamente.</p>
     </div>
   </section>
+  -->
 
   <!-- BIBLIOTECA -->
   <section class="biblioteca" id="biblioteca">
     <div class="contenedor">
-      <h2>Biblioteca digital</h2>
+      <h2>Biblioteca Lateral</h2>
       <p class="biblioteca-intro">Lecturas, recursos y archivos para descargar.</p>
 
       <div class="biblioteca-acceso" id="biblioteca-acceso">
@@ -548,20 +563,36 @@
     });
   </script>
 
-  <!-- RECOMENDACIONES -->
+  <!-- RECOMENDACIONES: oculta por el momento. Para reactivar, saca este comentario.
   <section class="recomendaciones" id="recomendaciones">
     <div class="contenedor">
       <h2>Recomendaciones</h2>
       <p>Próximamente.</p>
     </div>
   </section>
+  -->
 
-  <!-- CALCULADORA NEM -->
-  <section class="calculadora-nem" id="calculadora-nem">
+  <!-- HERRAMIENTAS PARA ESTUDIANTES -->
+  <section class="herramientas" id="herramientas">
     <div class="contenedor">
-      <h2>Calculadora de NEM</h2>
-      <p>¿Cuánto impacta una nota en tu promedio? Ingresa tus notas por año y asignatura, y proyecta cómo te afectan las que vienen.</p>
-      <a href="calculadora-nem.html" class="btn-principal" style="margin-top:1rem;display:inline-block;">Usar la calculadora →</a>
+      <h2>Herramientas para estudiantes</h2>
+      <p>Recursos gratuitos para practicar por tu cuenta, sin necesidad de tomar un taller.</p>
+      <div class="tarjetas">
+        <div class="tarjeta">
+          <span class="tarjeta-tag">PAES · Competencia Lectora</span>
+          <h3>Clasificador de ítems PAES</h3>
+          <p class="tarjeta-pregunta">¿Qué habilidad evalúa realmente esta pregunta?</p>
+          <p>Pega el enunciado de un ítem y la herramienta propone qué habilidad de comprensión lectora está midiendo, con las pistas que detectó.</p>
+          <a href="clasificador-paes.html" class="btn-secundario">Usar el clasificador →</a>
+        </div>
+        <div class="tarjeta">
+          <span class="tarjeta-tag">IV medio · NEM</span>
+          <h3>Calculadora de NEM</h3>
+          <p class="tarjeta-pregunta">¿Cuánto impacta una nota en tu promedio?</p>
+          <p>Ingresa tus notas por año y asignatura, y proyecta cómo te afectan las notas que vienen antes de rendirlas.</p>
+          <a href="calculadora-nem.html" class="btn-secundario">Usar la calculadora →</a>
+        </div>
+      </div>
     </div>
   </section>
 
