@@ -617,8 +617,6 @@
   const header = document.getElementById('site-header');
   const logoEl = document.querySelector('.logo');
   const navEl = document.querySelector('.nav-principal');
-  canvas.width = header.offsetWidth;
-  canvas.height = header.offsetHeight;
   const ctx = canvas.getContext('2d');
 
   // corazón más redondo/inflado, simétrico, con punta de 2px (no 1px) abajo
@@ -639,57 +637,91 @@
     return r >= 0 && r < filas && c >= 0 && c < cols ? heart[r][c] : 0;
   }
 
-  const headerRect = header.getBoundingClientRect();
-
-  // zona del logo a esquivar (con margen chico, para que se acerquen más a las letras)
-  const logoRect = logoEl.getBoundingClientRect();
-  const zonaLogo = {
-    left: logoRect.left - headerRect.left - 8,
-    right: logoRect.right - headerRect.left + 8,
-    top: logoRect.top - headerRect.top - 4,
-    bottom: logoRect.bottom - headerRect.top + 4,
-  };
-
-  // zona del menú: margen horizontal chico, pero más separación vertical
-  // para que no se crucen con las letras de "Talleres", "Blog", etc.
-  const navRect = navEl.getBoundingClientRect();
-  const zonaNav = {
-    left: navRect.left - headerRect.left - 6,
-    right: navRect.right - headerRect.left + 6,
-    top: navRect.top - headerRect.top - 16,
-    bottom: navRect.bottom - headerRect.top + 16,
-  };
-
   function pisaZona(zona, x, y, size) {
     return x + size > zona.left && x < zona.right &&
            y + size > zona.top && y < zona.bottom;
   }
 
-  // grilla con jitter: pareja y armónica, pero no mecánica (celda fija + variación aleatoria adentro)
-  const celda = 54;
+  // el tamaño real del encabezado cambia según la orientación del celular
+  // (el menú puede pasar a una segunda línea), así que hay que medir y
+  // dibujar de nuevo cada vez que ese tamaño cambia, no solo una vez al cargar.
+  function dibujarCorazones() {
+    canvas.width = header.offsetWidth;
+    canvas.height = header.offsetHeight;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  for (let cy = 0; cy < canvas.height + celda; cy += celda) {
-    for (let cx = 0; cx < canvas.width + celda; cx += celda) {
-      const p = 3 + Math.random() * 1.8;
-      const size = (cols + 2) * p;
-      const x = cx + (Math.random() - 0.5) * celda * 0.5;
-      const y = cy + (Math.random() - 0.5) * celda * 0.5;
+    const headerRect = header.getBoundingClientRect();
 
-      if (pisaZona(zonaLogo, x, y, size) || pisaZona(zonaNav, x, y, size)) continue;
+    // zona del logo a esquivar (con margen chico, para que se acerquen más a las letras)
+    const logoRect = logoEl.getBoundingClientRect();
+    const zonaLogo = {
+      left: logoRect.left - headerRect.left - 8,
+      right: logoRect.right - headerRect.left + 8,
+      top: logoRect.top - headerRect.top - 4,
+      bottom: logoRect.bottom - headerRect.top + 4,
+    };
 
-      for (let r = 0; r < filas; r++) {
-        for (let c = 0; c < cols; c++) {
-          const valor = valorCelda(r, c);
-          if (valor === 1) {
-            ctx.fillStyle = '#f2aed5';
-            ctx.fillRect(x + c * p, y + r * p, p, p);
-          } else if (valor === 2) {
-            ctx.fillStyle = '#fdf8f4';
-            ctx.fillRect(x + c * p, y + r * p, p, p);
+    // zona del menú: margen horizontal chico, pero más separación vertical
+    // para que no se crucen con las letras de "Talleres", "Blog", etc.
+    const navRect = navEl.getBoundingClientRect();
+    const zonaNav = {
+      left: navRect.left - headerRect.left - 6,
+      right: navRect.right - headerRect.left + 6,
+      top: navRect.top - headerRect.top - 16,
+      bottom: navRect.bottom - headerRect.top + 16,
+    };
+
+    // grilla con jitter: pareja y armónica, pero no mecánica (celda fija + variación aleatoria adentro)
+    const celda = 54;
+
+    for (let cy = 0; cy < canvas.height + celda; cy += celda) {
+      for (let cx = 0; cx < canvas.width + celda; cx += celda) {
+        const p = 3 + Math.random() * 1.8;
+        const size = (cols + 2) * p;
+        const x = cx + (Math.random() - 0.5) * celda * 0.5;
+        const y = cy + (Math.random() - 0.5) * celda * 0.5;
+
+        if (pisaZona(zonaLogo, x, y, size) || pisaZona(zonaNav, x, y, size)) continue;
+
+        for (let r = 0; r < filas; r++) {
+          for (let c = 0; c < cols; c++) {
+            const valor = valorCelda(r, c);
+            if (valor === 1) {
+              ctx.fillStyle = '#f2aed5';
+              ctx.fillRect(x + c * p, y + r * p, p, p);
+            } else if (valor === 2) {
+              ctx.fillStyle = '#fdf8f4';
+              ctx.fillRect(x + c * p, y + r * p, p, p);
+            }
           }
         }
       }
     }
+  }
+
+  dibujarCorazones();
+
+  // vuelve a dibujar cuando el tamaño del encabezado cambia de verdad
+  // (rotar el celular, que carguen las fuentes y el menú se acomode distinto, etc.)
+  let ultimoAncho = header.offsetWidth;
+  let ultimoAlto = header.offsetHeight;
+  let redibujoPendiente = null;
+
+  function onPosibleCambioDeTamano() {
+    if (redibujoPendiente) clearTimeout(redibujoPendiente);
+    redibujoPendiente = setTimeout(() => {
+      if (header.offsetWidth !== ultimoAncho || header.offsetHeight !== ultimoAlto) {
+        ultimoAncho = header.offsetWidth;
+        ultimoAlto = header.offsetHeight;
+        dibujarCorazones();
+      }
+    }, 150);
+  }
+
+  window.addEventListener('resize', onPosibleCambioDeTamano);
+  window.addEventListener('orientationchange', onPosibleCambioDeTamano);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(onPosibleCambioDeTamano);
   }
 </script>
   <script src="scrapbook.js"></script>
