@@ -661,15 +661,20 @@
       bottom: logoRect.bottom - headerRect.top + 4,
     };
 
-    // zona del menú: margen horizontal chico, pero más separación vertical
+    // zona del menú: una zona por cada link (no un solo rectángulo que
+    // abarque todo el menú), porque en celular vertical el menú pasa a
+    // varias líneas y un solo rectángulo grande tapaba casi todo el
+    // encabezado. Margen horizontal chico, pero más separación vertical
     // para que no se crucen con las letras de "Talleres", "Blog", etc.
-    const navRect = navEl.getBoundingClientRect();
-    const zonaNav = {
-      left: navRect.left - headerRect.left - 6,
-      right: navRect.right - headerRect.left + 6,
-      top: navRect.top - headerRect.top - 16,
-      bottom: navRect.bottom - headerRect.top + 16,
-    };
+    const zonasNav = Array.from(navEl.querySelectorAll('a')).map((link) => {
+      const linkRect = link.getBoundingClientRect();
+      return {
+        left: linkRect.left - headerRect.left - 6,
+        right: linkRect.right - headerRect.left + 6,
+        top: linkRect.top - headerRect.top - 16,
+        bottom: linkRect.bottom - headerRect.top + 16,
+      };
+    });
 
     // grilla con jitter: pareja y armónica, pero no mecánica (celda fija + variación aleatoria adentro)
     const celda = 54;
@@ -681,7 +686,7 @@
         const x = cx + (Math.random() - 0.5) * celda * 0.5;
         const y = cy + (Math.random() - 0.5) * celda * 0.5;
 
-        if (pisaZona(zonaLogo, x, y, size) || pisaZona(zonaNav, x, y, size)) continue;
+        if (pisaZona(zonaLogo, x, y, size) || zonasNav.some((zona) => pisaZona(zona, x, y, size))) continue;
 
         for (let r = 0; r < filas; r++) {
           for (let c = 0; c < cols; c++) {
