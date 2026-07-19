@@ -423,7 +423,7 @@ section:nth-child(even) {
   }
 
   .presentacion-foto {
-    width: 100%;
+    width: 200px;
     height: 260px;
   }
 }

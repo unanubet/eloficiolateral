@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <title>Clasificador de ítems PAES — El Oficio Lateral</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Fredericka+the+Great&family=Kranky&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'SensaWild Outline';
+      src: url('Fuentes/SensaWild-LineOutlineShade.woff2') format('woff2'),
+           url('Fuentes/SensaWild-LineOutlineShade.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    .eol-topbar {
+      background-color: #2a2a35;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .eol-topbar a {
+      color: #f2aed5;
+      font-family: 'Kranky', cursive;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .eol-topbar a:hover { text-decoration: underline; }
+    .eol-topbar-logo {
+      color: #fce8f3;
+      font-family: 'SensaWild Outline', cursive;
+      font-size: 1.7rem;
+      letter-spacing: 0.02em;
+      margin-left: 0.5rem;
+    }
+    .eol-bottombar {
+      background-color: #2a2a35;
+      color: #d3d5da;
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.82rem;
+      margin-top: 2rem;
+      font-family: 'Lora', serif;
+    }
+    .eol-bottombar a { color: #f2aed5; text-decoration: none; }
+    .eol-bottombar a:hover { text-decoration: underline; }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa: #f2aed5;
+      --gris: #d3d5da;
+      --rosa-medio: #c075a8;
+      --rosa-oscuro: #8f4a7a;
+      --navy: #2a2a35;
+      --crema: #fdf8f4;
+      --texto: #2a2a35;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      line-height: 1.85;
+      background-color: var(--crema);
+      background-image: repeating-linear-gradient(transparent, transparent 27px, #e8d5e0 28px);
+      background-size: 100% 28px;
+      color: var(--texto);
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .clasificador-wrap { width: 100%; max-width: 640px; margin: 0 auto; }
+
+    .eol-header { margin-bottom: 1.4rem; }
+    .eol-tag {
+      display: inline-block;
+      font-family: 'Kranky', cursive;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #fce8f3;
+      color: var(--rosa-oscuro);
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .eol-header h1 {
+      font-family: 'Kranky', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--rosa-oscuro);
+      margin-bottom: 0.4rem;
+      border-bottom: 3px dotted var(--rosa-medio);
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+    .eol-header p { font-size: 0.95rem; color: #555; line-height: 1.7; margin-top: 0.75rem; }
+
+    .card {
+      background: white;
+      border: 2px dashed var(--rosa-medio);
+      border-radius: 0.6rem;
+      padding: 1.3rem;
+      box-shadow: 4px 4px 0 var(--rosa);
+      margin-bottom: 1.2rem;
+    }
+
+    .card h2 {
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+      font-family: 'Kranky', cursive;
+      color: var(--rosa-oscuro);
+      font-weight: 400;
+    }
+
+    .card label {
+      display: block;
+      font-family: 'Kranky', cursive;
+      font-size: 0.95rem;
+      color: var(--rosa-oscuro);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--gris);
+      border-radius: 0.45rem;
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      resize: vertical;
+      background: #fff;
+      color: var(--texto);
+    }
+
+    textarea:focus {
+      outline: 2px solid rgba(240, 174, 213, 0.35);
+      border-color: var(--rosa-medio);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .btn-principal {
+      display: inline-block;
+      background-color: var(--navy);
+      color: var(--rosa);
+      padding: 0.65rem 1.6rem;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Kranky', cursive;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-principal:hover { background-color: var(--rosa-oscuro); color: white; }
+
+    .btn-secundario {
+      display: inline-block;
+      background: transparent;
+      color: var(--rosa-oscuro);
+      border: 2px solid var(--rosa-medio);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-family: 'Kranky', cursive;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secundario:hover {
+      background: var(--rosa-medio);
+      color: white;
+      text-decoration: none;
+    }
+
+    .resultado { display: none; }
+    .resultado.visible { display: block; }
+
+    .resultado-badge {
+      display: inline-block;
+      background: var(--rosa-oscuro);
+      color: white;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-family: 'Kranky', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.85rem;
+    }
+
+    .resultado-titulo {
+      font-family: 'Kranky', cursive;
+      color: var(--rosa-oscuro);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+
+    .resultado-texto {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--texto);
+      margin-bottom: 0.65rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .pill {
+      background: #fce8f3;
+      border: 1px solid rgba(192, 117, 168, 0.3);
+      color: var(--rosa-oscuro);
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+    }
+
+    .lista-habilidades {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+      list-style: none;
+    }
+
+    .lista-habilidades li { line-height: 1.6; color: var(--texto); }
+
+    .nota {
+      font-size: 0.9rem;
+      color: #6f5f6d;
+      margin-top: 0.8rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="eol-topbar">
+    <a href="index.html">← volver al sitio</a>
+    <span class="eol-topbar-logo">El Oficio Lateral</span>
+  </nav>
+  <main class="clasificador-wrap" aria-label="Clasificador de ítems PAES">
+
+    <header class="eol-header">
+      <span class="eol-tag">Herramienta pedagógica</span>
+      <h1>Clasificador de ítems PAES</h1>
+      <p>Pega el enunciado de una pregunta de Competencia Lectora y esta herramienta propone la habilidad que probablemente evalúa. Es un prototipo de apoyo para practicar: combina pistas de redacción y palabras clave, no reemplaza tu propio criterio.</p>
+    </header>
+
+    <section class="card">
+      <label for="itemInput">Pega el enunciado del ítem</label>
+      <textarea id="itemInput" placeholder="Ejemplo: ¿Qué idea del texto se puede inferir a partir de la expresión destacada?"></textarea>
+      <div class="actions">
+        <button id="clasificarBtn" class="btn-principal">Clasificar</button>
+        <button id="limpiarBtn" class="btn-secundario">Limpiar</button>
+      </div>
+    </section>
+
+    <section id="resultado" class="card resultado" aria-live="polite">
+      <div id="resultadoContenido"></div>
+    </section>
+
+    <section class="card">
+      <h2>Habilidades que reconoce</h2>
+      <ul class="lista-habilidades">
+        <li><strong>Localizar información explícita</strong>: identificar datos, hechos o afirmaciones que aparecen directamente en el texto.</li>
+        <li><strong>Inferir información implícita</strong>: deducir ideas, causas o consecuencias que no están dichas literalmente.</li>
+        <li><strong>Analizar</strong>: establecer relaciones, comparaciones o diferencias entre textos o elementos.</li>
+        <li><strong>Sintetizar</strong>: extraer el tema o la idea principal de un texto o fragmento.</li>
+        <li><strong>Interpretar</strong>: identificar la función o finalidad de un texto o de algún recurso dentro de él.</li>
+        <li><strong>Evaluar</strong>: escoger un juicio (adjetivo) sobre un elemento del texto, fundamentado en este.</li>
+        <li><strong>Aplicar a una situación externa</strong>: conectar el texto con una voz, un caso o un contexto que no aparece en él (alguien que opina, una institución que actúa).</li>
+      </ul>
+      <p class="nota">Si el enunciado es muy breve o ambiguo, la herramienta dará una propuesta probable y señalará las pistas detectadas.</p>
+    </section>
+
+  </main>
+  <footer class="eol-bottombar">
+    <a href="index.html">El Oficio Lateral</a> &copy; 2025 · «Procura ser dichosa»
+  </footer>
+
+  <script src="clasificador-paes.js"></script>
+</body>
+</html>
