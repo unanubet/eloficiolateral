@@ -669,10 +669,10 @@
     const zonasNav = Array.from(navEl.querySelectorAll('a')).map((link) => {
       const linkRect = link.getBoundingClientRect();
       return {
-        left: linkRect.left - headerRect.left - 6,
-        right: linkRect.right - headerRect.left + 6,
-        top: linkRect.top - headerRect.top - 16,
-        bottom: linkRect.bottom - headerRect.top + 16,
+        left: linkRect.left - headerRect.left - 4,
+        right: linkRect.right - headerRect.left + 4,
+        top: linkRect.top - headerRect.top - 8,
+        bottom: linkRect.bottom - headerRect.top + 8,
       };
     });
 
