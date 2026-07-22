@@ -16,7 +16,7 @@ No hay fecha fija: cuando esté todo listo, eliges el día y publicas.
 
 ## Preparar el material
 
-- [ ] Abrir `pieza-lanzamiento.html` y capturar la imagen cuadrada
+- [ ] Abrir `referencia/pieza-lanzamiento.html` y capturar la imagen cuadrada
       (instrucciones dentro del archivo).
 - [ ] Elegir la variante de texto en `copy-post.md` (A breve o B narrativa).
 - [ ] Revisar la secuencia de `copy-historias.md`.
@@ -24,9 +24,9 @@ No hay fecha fija: cuando esté todo listo, eliges el día y publicas.
 ## Día del lanzamiento
 
 - [ ] Actualizar el **link de la bio** de Instagram a `unanubet.github.io/eloficiolateral`.
-- [ ] Publicar el **post** con la imagen y la copy elegida.
-- [ ] Subir las **historias** (acuérdate del sticker de enlace en la historia 2).
-- [ ] Fijar el post arriba de tu perfil.
+- [x] Publicar el **post** con la imagen y la copy elegida.
+- [x] Subir las **historias** (acuérdate del sticker de enlace en la historia 2).
+- [x] Fijar el post arriba de tu perfil.
 - [ ] Guardar las historias en un **destacado**.
 
 ## Después
