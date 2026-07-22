@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <title>Ejercicios de síntesis PAES — El Oficio Lateral</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Fredericka+the+Great&family=Kranky&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'SensaWild Outline';
+      src: url('Fuentes/SensaWild-LineOutlineShade.woff2') format('woff2'),
+           url('Fuentes/SensaWild-LineOutlineShade.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    .eol-topbar {
+      background-color: #2a2a35;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .eol-topbar a {
+      color: #f2aed5;
+      font-family: 'Kranky', cursive;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .eol-topbar a:hover { text-decoration: underline; }
+    .eol-topbar-logo {
+      color: #fce8f3;
+      font-family: 'SensaWild Outline', cursive;
+      font-size: 1.7rem;
+      letter-spacing: 0.02em;
+      margin-left: 0.5rem;
+    }
+    .eol-bottombar {
+      background-color: #2a2a35;
+      color: #d3d5da;
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.82rem;
+      margin-top: 2rem;
+      font-family: 'Lora', serif;
+    }
+    .eol-bottombar a { color: #f2aed5; text-decoration: none; }
+    .eol-bottombar a:hover { text-decoration: underline; }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa: #f2aed5;
+      --gris: #d3d5da;
+      --rosa-medio: #c075a8;
+      --rosa-oscuro: #8f4a7a;
+      --navy: #2a2a35;
+      --crema: #fdf8f4;
+      --texto: #2a2a35;
+      --verde: #4a8f6a;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      line-height: 1.85;
+      background-color: var(--crema);
+      background-image: repeating-linear-gradient(transparent, transparent 27px, #e8d5e0 28px);
+      background-size: 100% 28px;
+      color: var(--texto);
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .wrap { width: 100%; max-width: 680px; margin: 0 auto; }
+
+    .eol-header { margin-bottom: 1.4rem; }
+    .eol-tag {
+      display: inline-block;
+      font-family: 'Kranky', cursive;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #fce8f3;
+      color: var(--rosa-oscuro);
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .eol-header h1 {
+      font-family: 'Kranky', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--rosa-oscuro);
+      margin-bottom: 0.4rem;
+      border-bottom: 3px dotted var(--rosa-medio);
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+    .eol-header p { font-size: 0.95rem; color: #555; line-height: 1.7; margin-top: 0.75rem; }
+
+    /* Acceso con contraseña */
+    .acceso {
+      background: white;
+      border: 2px dashed var(--rosa-medio);
+      border-radius: 0.6rem;
+      padding: 1.3rem;
+      box-shadow: 4px 4px 0 var(--rosa);
+      margin-bottom: 1.2rem;
+    }
+    .acceso-texto { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .acceso-form { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .acceso-input {
+      flex: 1;
+      min-width: 160px;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--gris);
+      border-radius: 0.4rem;
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+    }
+    .acceso-btn {
+      background-color: var(--navy);
+      color: var(--rosa);
+      border: none;
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      font-family: 'Kranky', cursive;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .acceso-btn:hover { background-color: var(--rosa-oscuro); color: white; }
+    .acceso-error { color: #b23b3b; font-size: 0.88rem; margin-top: 0.6rem; min-height: 1.2em; }
+
+    #contenidoHerramienta { display: none; }
+
+    .card {
+      background: white;
+      border: 2px dashed var(--rosa-medio);
+      border-radius: 0.6rem;
+      padding: 1.3rem;
+      box-shadow: 4px 4px 0 var(--rosa);
+      margin-bottom: 1.2rem;
+    }
+
+    .card h2 {
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+      font-family: 'Kranky', cursive;
+      color: var(--rosa-oscuro);
+      font-weight: 400;
+    }
+
+    /* Progreso */
+    .progreso-fila {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    #progresoTexto {
+      font-family: 'Kranky', cursive;
+      color: var(--rosa-oscuro);
+      font-size: 1.05rem;
+    }
+    #puntosProgreso { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .punto {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gris);
+      display: inline-block;
+    }
+    .punto.revisado { background: var(--rosa-medio); }
+    .punto.activo { outline: 2px solid var(--rosa-oscuro); outline-offset: 2px; }
+
+    .fuente-texto {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #6f5f6d;
+      margin-bottom: 0.6rem;
+    }
+
+    .contenido-texto {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      white-space: pre-line;
+      background: #fdf6fa;
+      border: 1px solid rgba(192, 117, 168, 0.25);
+      border-radius: 0.45rem;
+      padding: 1rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .card label {
+      display: block;
+      font-family: 'Kranky', cursive;
+      font-size: 0.95rem;
+      color: var(--rosa-oscuro);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--gris);
+      border-radius: 0.45rem;
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      background: #fff;
+      color: var(--texto);
+    }
+    textarea { min-height: 80px; resize: vertical; }
+
+    input[type="text"]:focus, textarea:focus {
+      outline: 2px solid rgba(240, 174, 213, 0.35);
+      border-color: var(--rosa-medio);
+    }
+
+    .campo { margin-bottom: 1.1rem; }
+    .feedback { margin-top: 0.6rem; }
+
+    .chequeo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      padding: 0.3rem 0;
+    }
+    .chequeo-icono { flex-shrink: 0; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .btn-principal {
+      display: inline-block;
+      background-color: var(--navy);
+      color: var(--rosa);
+      padding: 0.65rem 1.6rem;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Kranky', cursive;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-principal:hover { background-color: var(--rosa-oscuro); color: white; }
+
+    .btn-secundario {
+      display: inline-block;
+      background: transparent;
+      color: var(--rosa-oscuro);
+      border: 2px solid var(--rosa-medio);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-family: 'Kranky', cursive;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-secundario:hover { background: var(--rosa-medio); color: white; }
+    .btn-secundario:disabled, .btn-principal:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn-secundario:disabled:hover { background: transparent; color: var(--rosa-oscuro); }
+
+    .navegacion {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.2rem;
+    }
+
+    .resultado-badge {
+      display: inline-block;
+      background: var(--rosa-oscuro);
+      color: white;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-family: 'Kranky', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.65rem;
+    }
+    #modeloBox {
+      display: none;
+      margin-top: 1rem;
+      background: #fce8f3;
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    #modeloBox.visible { display: block; }
+    .resultado-texto { font-size: 0.95rem; margin-bottom: 0.4rem; }
+
+    .nota {
+      font-size: 0.9rem;
+      color: #6f5f6d;
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="eol-topbar">
+    <a href="index.html">← volver al sitio</a>
+    <span class="eol-topbar-logo">El Oficio Lateral</span>
+  </nav>
+  <main class="wrap" aria-label="Ejercicios de síntesis PAES">
+
+    <header class="eol-header">
+      <span class="eol-tag">Herramienta para clases</span>
+      <h1>Ejercicios de síntesis — PAES</h1>
+      <p>Práctica de tema e idea principal, nivel Competencia Lectora. Lee el fragmento, escribe tu respuesta y revisa si mencionaste lo esencial.</p>
+    </header>
+
+    <section class="acceso" id="acceso">
+      <p class="acceso-texto">Para ver este contenido necesitas la contraseña.</p>
+      <div class="acceso-form">
+        <input type="password" id="passInput" placeholder="contraseña" class="acceso-input">
+        <button onclick="verificarPass()" class="acceso-btn">Entrar</button>
+      </div>
+      <p class="acceso-error" id="acceso-error"></p>
+    </section>
+
+    <div id="contenidoHerramienta">
+      <section class="card">
+        <div class="progreso-fila">
+          <span id="progresoTexto"></span>
+          <div id="puntosProgreso"></div>
+        </div>
+        <p class="fuente-texto" id="fuenteTexto"></p>
+        <div class="contenido-texto" id="contenidoTexto"></div>
+
+        <div class="campo">
+          <label for="temaInput">Tema del texto (¿de qué se habla?)</label>
+          <input type="text" id="temaInput" placeholder="Escribe el tema en pocas palabras">
+          <div class="feedback" id="feedbackTema"></div>
+        </div>
+
+        <div class="campo">
+          <label for="ideaInput">Idea principal (¿qué se dice sobre el tema?)</label>
+          <textarea id="ideaInput" placeholder="Escribe la idea principal en una oración"></textarea>
+          <div class="feedback" id="feedbackIdea"></div>
+        </div>
+
+        <div class="actions">
+          <button id="btnRevisar" class="btn-principal">Revisar</button>
+          <button id="btnModelo" class="btn-secundario">Ver respuesta modelo</button>
+        </div>
+
+        <div id="modeloBox"></div>
+
+        <div class="navegacion">
+          <button id="btnAnterior" class="btn-secundario">← Texto anterior</button>
+          <button id="btnSiguiente" class="btn-secundario">Texto siguiente →</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Cómo se revisa</h2>
+        <p class="nota">Esto no es corrección con inteligencia artificial: la herramienta solo busca si tu respuesta menciona el concepto clave del texto y lo que se dice sobre él. Puede marcar "falta" aunque tu idea esté bien expresada con otras palabras — usa el feedback como una pista, no como una nota, y compara siempre con la respuesta modelo.</p>
+      </section>
+    </div>
+
+  </main>
+  <footer class="eol-bottombar">
+    <a href="index.html">El Oficio Lateral</a> &copy; 2026 · «Procura ser dichosa»
+  </footer>
+
+  <script>
+    if (sessionStorage.getItem('sintesis-ok') === 'si') {
+      document.getElementById('acceso').style.display = 'none';
+      document.getElementById('contenidoHerramienta').style.display = 'block';
+    }
+
+    function verificarPass() {
+      const input = document.getElementById('passInput').value.trim().toLowerCase();
+      if (input === 'kierkegaard') {
+        sessionStorage.setItem('sintesis-ok', 'si');
+        document.getElementById('acceso').style.display = 'none';
+        document.getElementById('contenidoHerramienta').style.display = 'block';
+      } else {
+        document.getElementById('acceso-error').textContent = 'Contraseña incorrecta.';
+      }
+    }
+
+    document.getElementById('passInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') verificarPass();
+    });
+  </script>
+  <script src="sintesis-paes.js"></script>
+</body>
+</html>
