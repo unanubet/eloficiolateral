@@ -1009,8 +1009,19 @@ section:nth-child(even) {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+/* en pantallas grandes, cancela el padding de .contenedor para que las
+   entradas empiecen/terminen a ras de los 900px del header (misma línea
+   que el logo y el último link del menú) */
+@media (min-width: 701px) {
+  .blog-lista {
+    width: calc(100% + 3rem);
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+  }
 }
 
 .entrada {
@@ -1041,6 +1052,8 @@ section:nth-child(even) {
   font-size: 1.02rem;
   color: var(--texto);
   margin-bottom: 1rem;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .entrada-cuerpo p:last-child {
@@ -1051,11 +1064,100 @@ section:nth-child(even) {
   color: var(--rosa-oscuro);
 }
 
+.entrada-notas {
+  border-top: 1px dashed var(--rosa-medio);
+  padding-top: 0.8rem;
+  margin-top: 1.3rem;
+}
+
+.entrada-notas sup {
+  margin-right: 0.2rem;
+}
+
+.entrada-cuerpo strong {
+  color: var(--rosa-oscuro);
+}
+
+.entrada-cuerpo u {
+  text-decoration-color: var(--rosa-medio);
+  text-decoration-thickness: 2px;
+}
+
+/* tarjetas de preview al estilo Wikipedia para links con data-preview */
+.link-preview {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dashed var(--rosa-oscuro);
+}
+
+.link-preview-card {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  width: 240px;
+  background: white;
+  border: 2px dashed var(--rosa-medio);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  box-shadow: 4px 4px 0px var(--rosa);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+  color: var(--texto);
+  line-height: 1.4;
+  text-align: left;
+  z-index: 10;
+}
+
+.link-preview-card img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.4rem;
+}
+
+.link-preview:hover .link-preview-card,
+.link-preview:focus .link-preview-card,
+.link-preview.activa .link-preview-card {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .link-preview-card {
+    width: 200px;
+  }
+}
+
 .blog-vacio {
   text-align: center;
   color: #666;
   max-width: 600px;
   margin: 2rem auto 0;
+}
+
+/* widget "sonando ahora" para entradas del blog con música (embed de Spotify) */
+.ahora-sonando {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--crema);
+  border: 2px dashed var(--rosa-medio);
+  border-radius: 10px;
+  padding: 0.8rem;
+  margin-bottom: 1.3rem;
+  max-width: 400px;
+}
+
+.ahora-sonando-label {
+  font-family: var(--fuente-titulo);
+  font-size: 0.85rem;
+  color: var(--rosa-medio);
+}
+
+.ahora-sonando iframe {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
 }
 
 /* === MOBILE === */
