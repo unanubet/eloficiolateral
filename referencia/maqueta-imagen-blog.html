@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MAQUETA · imagen debajo del título en una entrada del blog
+  ============================================================
+  Usa style.css real del sitio, así que esto se ve tal cual se
+  vería en blog.html. El recuadro punteado rosa es un placeholder
+  en el lugar exacto donde va tu collage — reemplázalo por tu
+  <img> real cuando lo tengas listo (ver comentario "EDITABLE").
+  Este archivo no forma parte del sitio publicado, se puede
+  borrar cuando ya no lo necesites.
+  ============================================================
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maqueta · imagen en entrada del blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Fredericka+the+Great&family=Kranky&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* solo para esta maqueta: simula tu collage sin tener el archivo real */
+    .placeholder-collage {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #111;
+      border-radius: 12px;
+      margin: 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: #fff;
+      font-family: 'Lora', serif;
+      text-align: center;
+      padding: 2rem;
+      box-sizing: border-box;
+      outline: 3px dashed var(--rosa);
+      outline-offset: -12px;
+    }
+    .placeholder-collage strong {
+      font-family: var(--fuente-titulo);
+      font-size: 1.6rem;
+      color: var(--rosa);
+      letter-spacing: 0.03em;
+    }
+    .placeholder-collage span {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      max-width: 320px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marquee-barra">
+    <marquee behavior="scroll" direction="left" scrollamount="3">
+      🌸 Talleres &nbsp;&nbsp; 🧶 Clubes de creación &nbsp;&nbsp; 📔 Clases particulares &nbsp;&nbsp; 📖 Biblioteca Lateral &nbsp;&nbsp; 🎀 Herramientas &nbsp;&nbsp; 💌 Y otras cositas &nbsp;&nbsp;
+    </marquee>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="../logo.png" alt="El Oficio Lateral" class="logo-img">
+        <span class="logo-texto">El Oficio Lateral</span>
+      </div>
+      <nav class="nav-principal">
+        <a href="#">Talleres</a>
+        <a href="#">Agenda tu clase</a>
+        <a href="#">Registro</a>
+        <a href="#">Biblioteca</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="blog">
+    <div class="contenedor">
+      <div class="blog-lista">
+
+        <article class="entrada">
+          <p class="entrada-fecha">27 de julio, 2026</p>
+          <h2>Mi pequeño rincón del internet</h2>
+
+          <img src="../Blog/Imágenes Entradas/Entrada 1.png" alt="Mi pequeño rincón del internet — ilustración vintage de una mujer sosteniendo una máquina de escribir">
+
+          <div class="entrada-cuerpo">
+            <div class="ahora-sonando">
+              <span class="ahora-sonando-label">♪ Sonando ahora: Yo La Tengo — <em>My Little Corner of the World</em></span>
+              <iframe src="https://open.spotify.com/embed/track/2bY66Hf5NbHJ8Ai8eNmJHG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+            <p>¿Por qué una página web?</p>
+
+            <p>Como toda profe millennial, todo lo que aprendí sobre IA en sus comienzos fue <u>contra mi voluntad</u> en medio del calvario que implicaba tener que ponerle un 3,5 (de 7) a tareas de escritura que claramente no habían sido elaboradas por un ser humano.</p>
+
+            <p>Recién se estaba normalizando la educación presencial, había brechas enormes entre los estudiantes y los chatbots parecían aumentarlas todavía más. Al mismo tiempo, había estudiantes tremendamente inseguros de sus capacidades tanto académicas como sociales que claramente sentían que se beneficiaban de la herramienta. (¿y quién es una para cuestionar esa sensación?)</p>
+
+            <p>Fue así como supe, muy a mi pesar, que a pesar de las consecuencias ambientales, intelectuales, sociales y educativas que pudiesen implicarse, <u>iba a tener que aprender sobre el tema</u> y, luego de establecer un nivel decente de manejo de la herramienta, preguntarle a la propia IA <strong>cómo hacer para que las evaluaciones que pedía a mis estudiantes fuesen imposibles de realizar solamente usando ChatGPT</strong> y así se viesen obligados a tener que aplicar otros recursos para aprender.</p>
+
+            <p>Así, después de cursar un diplomado en Juegos y Aprendizaje Creativo, cuando vi que las personas estaban usando chatbots para planificar sus almuerzos, la usé por primera vez (con aprobación de los docentes y la citación correspondiente) para elaborar mi trabajo final: una matriz de los Objetivos de Aprendizaje de Lengua y Literatura de I a IV Medio, clasificados en base a sus habilidades y contenidos, con actividades que contribuyan al logro de esos aprendizajes a través del juego y el desarrollo de la creatividad.</p>
+
+            <p>El resultado final después de años de iteración fueron evaluaciones entretenidísimas (a mi parecer) y desafiantes, útiles para el trabajo interdisciplinario y la reflexión crítica.<sup><a href="#nota-1">1</a></sup> También inquietudes de apoderados por considerar que el nivel era demasiado exigente.</p>
+
+            <p>Al mismo tiempo, tomé un segundo trabajo debido a las ya archiconocidas condiciones laborales de profesores en particulares subvencionados sin carrera docente. Esta doble precarización (contrato por bajo sueldo + boleteo por bajo sueldo) también me invitó a usar IA en mi trabajo como creadora de capacitaciones corporativas. Así, también me volví experta en reconocer la redacción de la IA en los trabajos de mis estudiantes.</p>
+
+            <p>Cuando al fin comenzaba a sentir que dominaba la pedagogía de los veinteveintes, me despidieron. Así que tuve que buscar qué hacer con todo lo que había aprendido. Ahí encontré un taller interesantísimo: «<a href="https://www.instagram.com/p/Dadl_n1HfY5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">cómo entrenar a tu IA</a>» de la <a href="https://www.revistaanfibia.com/" target="_blank" rel="noopener">Revista Anfibia</a>, donde el profe nos ayudó a optimizar nuestros proyectos personales utilizando código escrito por IA.</p>
+
+            <p>Así nació esta web, en parte como un intento por darle sentido a los nuevos tiempos: Instagram es un mall <a href="https://www.newyorker.com/culture/decade-in-review/the-age-of-instagram-face" target="_blank" rel="noopener">lleno de caras algorítmicas idénticas,</a> Twitter es un vertedero de odio incel en el que aún flotan algunas <a href="https://x.com/dieworkwear/status/2078628778054672519" target="_blank" rel="noopener" data-preview="Publicación en X — hay que tener cuenta para verla completa.">joyas de la información</a>, Facebook es un compendio de <a href="https://www.facebook.com/groups/647348965424758/discussion/preview" target="_blank" rel="noopener" data-preview="Grupo de Facebook sobre almacenaje y organización de materiales de bordado — hay que tener cuenta para verlo.">grupos de pasatiempos realmente específicos</a> y en el mundo real tenemos: el avance de los totalitarismos, la desinformación, la burbuja de la Inteligencia Artificial, la precarización laboral, el desempleo, la crisis de atención, el brainrot y la adicción a las redes. ¿Solución? ¡Vengan!: <strong>aquí nos podemos encontrar, y conversar, o no.</strong></p>
+
+            <p>No quiero pensar que somos como los humanos en la nave de <a href="https://images.squarespace-cdn.com/content/v1/60241cb68df65b530cd84d95/1720809139540-QY5NQQLRKMK5Q3R531DW/Humans10.jpg?format=2500w" target="_blank" rel="noopener">Wall-e</a> o que nos estamos convirtiendo en <a href="https://www.elmostrador.cl/noticias/multimedia/punto-por-punto/2026/07/24/proyecto-escucha-su-corazon-de-urruticoechea-seria-mas-duro-que-leyes-de-referencia-en-eeuu/" target="_blank" rel="noopener">El cuento de la criada</a>, prefiero imaginar que podemos ser algo que podemos construir entre todes. Y si no lo logramos, si efectivamente se está perdiendo todo, quiero haber sentido que resistí a través de las formas que encontré disponibles. (?)</p>
+
+            <p>Eso, si llegaste hasta acá, no puedo creerlo. O eres muy cahuinerx, o mis habilidades de redacción son decentes, y definitivamente logras concentrarte sostenidamente por un promedio de ¿10 minutos? ¡Eso es bueno!</p>
+
+            <p>Y tú: <strong>¿qué haces para mantener la cordura en estos tiempos?</strong> Pueden responder en el post de Instagram <a href="https://instagram.com/eloficiolateral" target="_blank" rel="noopener">@eloficiolateral</a> o al DM. (No es pregunta para generar engagement, <u>REALMENTE QUIERO SABER</u>.)</p>
+
+            <p class="entrada-notas" id="nota-1"><sup>1</sup> Si quieres saber más sobre esto, escríbeme por <a href="https://instagram.com/eloficiolateral" target="_blank" rel="noopener">Instagram</a> o mail <a href="mailto:eloficiolateral0@gmail.com">eloficiolateral0@gmail.com</a>.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
