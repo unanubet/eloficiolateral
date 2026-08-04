@@ -1189,4 +1189,12 @@ section:nth-child(even) {
   h2 {
     font-size: 1.6rem;
   }
+
+  .entrada {
+    padding: 1.2rem;
+  }
+
+  .ahora-sonando {
+    padding: 0.5rem;
+  }
 }
