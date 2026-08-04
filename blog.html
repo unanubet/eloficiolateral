@@ -41,7 +41,7 @@
         <a href="index.html#talleres">Talleres</a>
         <a href="index.html#realizados">Registro</a>
         <a href="index.html#biblioteca">Biblioteca</a>
-        <a href="calculadora-nem.html">Calculadora NEM</a>
+        <a href="index.html#herramientas">Herramientas</a>
         <a href="blog.html">Blog</a>
         <a href="index.html#contacto">Contacto</a>
       </nav>
@@ -52,7 +52,7 @@
   <section class="hero" style="padding:3rem 1.5rem;">
     <div class="hero-inner">
       <h1 class="cita-titulo">Mucho Texto</h1>
-      <p class="cita-epigrafe" style="text-align:center;">«La felicidad, o a lo menos el ánimo alegre del maestro, vale en cuanto a<br>manantial donde beberán los niños su gozo, y del gozo necesitan ellos<br>tanto como de adoctrinamiento.»</p>
+      <p class="cita-epigrafe" style="text-align:center;">«La felicidad, o a lo menos el ánimo alegre del maestro, vale en cuanto a manantial donde beberán los niños su gozo, y del gozo necesitan ellos tanto como de adoctrinamiento.»</p>
     </div>
   </section>
 
@@ -124,6 +124,12 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <p><a href="index.html" style="color:var(--rosa);">El Oficio Lateral</a> &copy; 2026 · «Procura ser dichosa»</p>
+    <div class="visit-counter" aria-label="Contador de visitas">
+      <span class="visit-counter__label">Eres la visita nº</span>
+      <span class="visit-counter__digits" id="visit-count">
+        <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+      </span>
+    </div>
   </footer>
 
   <script src="blog.js"></script>
@@ -131,5 +137,15 @@
   <!-- Contador de visitas (GoatCounter) -->
   <script data-goatcounter="https://unanubet.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
+  <script>
+    fetch('https://unanubet.goatcounter.com/counter/TOTAL.json')
+      .then(res => res.json())
+      .then(data => {
+        const total = String(parseInt(data.count.replace(/\D/g, ''), 10)).padStart(5, '0');
+        const digits = document.querySelectorAll('#visit-count span');
+        digits.forEach((span, i) => { span.textContent = total[i]; });
+      })
+      .catch(() => {});
+  </script>
 </body>
 </html>
