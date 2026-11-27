@@ -1295,13 +1295,17 @@ section:nth-child(even) {
   background-image: none;
 }
 
+.pagina-blog section.blog {
+  background-color: transparent;
+}
+
 .pagina-blog .hero {
   background-color: var(--lila);
   border-bottom: 3px dashed var(--navy);
 }
 
 .pagina-blog .cita-titulo {
-  font-family: 'Rammeto One', sans-serif;
+  font-family: 'Rammetto One', sans-serif;
   font-weight: 400;
   font-size: 3rem;
   line-height: 1.05;
