@@ -5,6 +5,7 @@
   --rosa-medio: #c075a8;
   --rosa-oscuro: #8f4a7a;
   --lila: #b6a2d6;
+  --lila-oscuro: #6f5499; /* lila profundo para texto y detalles (legible sobre blanco/crema) */
   --amarillo: #f2d675;
   --navy: #2a2a35;
   --crema: #fdf8f4;
@@ -1309,6 +1310,7 @@ section:nth-child(even) {
   font-weight: 400;
   font-size: 3rem;
   line-height: 1.05;
+  letter-spacing: 0.06em;
   color: var(--navy);
 }
 
@@ -1319,4 +1321,47 @@ section:nth-child(even) {
 .pagina-blog .entrada {
   border-color: var(--navy);
   box-shadow: 4px 4px 0px var(--navy);
+}
+
+/* blog: tipografía Bitter (cuerpo, títulos de entrada, etiquetas) + detalles en lila profundo */
+.pagina-blog {
+  font-family: 'Bitter', serif;
+}
+
+.pagina-blog .cita-epigrafe {
+  font-family: 'Bitter', serif;
+}
+
+.pagina-blog .entrada h2 {
+  font-family: 'Bitter', serif;
+  font-weight: 800;
+  font-size: 1.7rem;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+  border-bottom-color: var(--lila-oscuro);
+}
+
+.pagina-blog .entrada-fecha,
+.pagina-blog .ahora-sonando-label {
+  font-family: 'Bitter', serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--lila-oscuro);
+}
+
+.pagina-blog .entrada-cuerpo p {
+  font-family: 'Bitter', serif;
+}
+
+.pagina-blog .entrada-cuerpo em,
+.pagina-blog .entrada-cuerpo strong {
+  color: var(--lila-oscuro);
+}
+
+.pagina-blog .entrada-cuerpo u {
+  text-decoration-color: var(--lila);
+}
+
+.pagina-blog .entrada-notas {
+  border-top-color: var(--lila-oscuro);
 }
