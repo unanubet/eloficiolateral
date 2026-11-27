@@ -1288,3 +1288,31 @@ section:nth-child(even) {
     padding: 0.5rem;
   }
 }
+
+/* === PÁGINA DEL BLOG (rebranding nov 2026): fondo lila plano + título en Rammeto One === */
+.pagina-blog {
+  background-color: var(--lila);
+  background-image: none;
+}
+
+.pagina-blog .hero {
+  background-color: var(--lila);
+  border-bottom: 3px dashed var(--navy);
+}
+
+.pagina-blog .cita-titulo {
+  font-family: 'Rammeto One', sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.05;
+  color: var(--navy);
+}
+
+.pagina-blog .cita-epigrafe {
+  color: var(--navy);
+}
+
+.pagina-blog .entrada {
+  border-color: var(--navy);
+  box-shadow: 4px 4px 0px var(--navy);
+}
